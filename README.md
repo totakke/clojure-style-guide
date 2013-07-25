@@ -1,4 +1,8 @@
+# Clojureスタイルガイド
+
+<!--
 # The Clojure Style Guide
+-->
 
 > Role models are important. <br/>
 > -- Officer Alex J. Murphy / RoboCop
@@ -28,6 +32,22 @@ these issues will be addressed - just keep them in mind for now.
 You can generate a PDF or an HTML copy of this guide using
 [Transmuter](https://github.com/TechnoGate/transmuter).
 
+## 目次
+
+* [ソースコードのレイアウトと所属](#source-code-layout--organization)
+* [文法](#syntax)
+* [命名規則](#naming)
+* [コレクション](#collections)
+* [状態](#mutation)
+* [文字列](#strings)
+* [例外](#exceptions)
+* [マクロ](#macros)
+* [コメント](#comments)
+    * [コメントアノテーション](#comment-annotations)
+* [Existential](#existential)
+* [Tooling](#tooling)
+
+<!--
 ## Table of Contents
 
 * [Source Code Layout & Organization](#source-code-layout--organization)
@@ -42,15 +62,21 @@ You can generate a PDF or an HTML copy of this guide using
     * [Comment Annotations](#comment-annotations)
 * [Existential](#existential)
 * [Tooling](#tooling)
+-->
 
+## ソースコードのレイアウトと所属
+
+<!--
 ## Source Code Layout & Organization
+-->
 
 > Nearly everybody is convinced that every style but their own is
 > ugly and unreadable. Leave out the "but their own" and they're
 > probably right... <br/>
 > -- Jerry Coffin (on indentation)
 
-* Use two **spaces** per indentation level. No hard tabs.
+* 各インデントには2つの**スペース**を使う。タブは使わない。
+<!-- * Use two **spaces** per indentation level. No hard tabs. -->
 
     ```Clojure
     ;; good
@@ -62,7 +88,8 @@ You can generate a PDF or an HTML copy of this guide using
         (something-else))
     ```
 
-* Align vertically function arguments.
+* 関数の引数は左揃えにする。
+<!-- * Align vertically function arguments. -->
 
     ```Clojure
     ;; good
@@ -74,7 +101,8 @@ You can generate a PDF or an HTML copy of this guide using
       (range 1 10))
     ```
 
-* Align `let` bindings and map keywords.
+* `let`の束縛とマップのキーワードを揃える。
+<!-- * Align `let` bindings and map keywords. -->
 
     ```Clojure
     ;; good
@@ -90,8 +118,9 @@ You can generate a PDF or an HTML copy of this guide using
       :thing2 thing2})
     ```
 
-* Optionally omit the new line between the function name and argument
-  vector for `defn` when there is no docstring.
+* `defn`において、ドキュメント文字列を持たない場合は、関数名と引数ベクターの間の改行を省略しても良い。
+<!-- * Optionally omit the new line between the function name and argument -->
+<!--   vector for `defn` when there is no docstring. -->
 
     ```Clojure
     ;; good
@@ -108,8 +137,9 @@ You can generate a PDF or an HTML copy of this guide using
       [x] (bar x))
     ```
 
-* Optionally omit the new line between the argument vector and a short
-  function body.
+* 関数本体が短い場合、引数ベクターと関数本体の間の改行は省略しても良い。
+<!-- * Optionally omit the new line between the argument vector and a short -->
+<!--   function body. -->
 
     ```Clojure
     ;; good
@@ -134,7 +164,8 @@ You can generate a PDF or an HTML copy of this guide using
             (baz x)))
     ```
 
-* Indent each line of multi-line docstrings.
+* 複数行に渡るドキュメント文字列はインデントする。
+<!-- * Indent each line of multi-line docstrings. -->
 
     ```Clojure
     ;; good
@@ -177,7 +208,8 @@ and before a closing bracket.
     (foo ( bar baz ) quux)
     ```
 
-* Don't use commas between the elements of sequential collection literals.
+* シーケンシャルコレクションのリテラルの要素の間にコンマを使わない。
+<!-- * Don't use commas between the elements of sequential collection literals. -->
 
     ```Clojure
     ;; good
@@ -189,8 +221,9 @@ and before a closing bracket.
     (1, 2, 3)
     ```
 
-* Consider enhancing the readability of map literals via judicious use
-of commas and line breaks.
+* コンマや改行を使い、マップリテラルの可読性を向上させることを検討する。
+<!-- * Consider enhancing the readability of map literals via judicious use -->
+<!-- of commas and line breaks. -->
 
     ```Clojure
     ;; good
@@ -204,7 +237,8 @@ of commas and line breaks.
     {:name "Bruce Wayne", :alter-ego "Batman"}
     ```
 
-* Place all trailing parentheses on a single line.
+* 後ろ側に連続する括弧は同じ行に含める。
+<!-- * Place all trailing parentheses on a single line. -->
 
     ```Clojure
     ;; good
@@ -217,7 +251,8 @@ of commas and line breaks.
     )
     ```
 
-* Use empty lines between top-level forms.
+* トップレベルのフォームの間には空白行を挟む。
+<!-- * Use empty lines between top-level forms. -->
 
     ```Clojure
     ;; good
@@ -230,7 +265,8 @@ of commas and line breaks.
     (defn foo ...)
     ```
 
-    An exception to the rule is the grouping of related `def`s together.
+    例外として、関係する`def`はまとめてしまっても良い。
+    <!-- An exception to the rule is the grouping of related `def`s together. -->
 
     ```Clojure
     ;; good
@@ -926,7 +962,11 @@ performance-critical portions of the code.
 * Avoid the use of Java arrays, except for interop scenarios and
 performance-critical code dealing heavily with primitive types.
 
+## 状態
+
+<!--
 ## Mutation
+-->
 
 ### Refs
 
