@@ -16,12 +16,7 @@ supposed to help risks not getting used at all &ndash; no matter how good it is.
 関連する規約ごとにいくつかのセクションに分かれて構成されています。規約には理論
 的根拠を付けるようにしています（根拠が明らかな場合は省略しています）。
 
-I didn't come up with all the rules out of nowhere - they are mostly
-based on my extensive career as a professional software engineer,
-feedback and suggestions from members of the Clojure community, and
-various highly regarded Clojure programming resources, such as
-["Clojure Programming"](http://www.clojurebook.com/)
-and ["The Joy of Clojure"](http://joyofclojure.com/).
+これらの規約は、出し抜けに考えだされたものではない。これらの多くは、私のプロソフトウェアエンジニアとしての幅広い仕事や、Clojureコミュニティメンバーからのフィードバックと意見、そして、["Clojure Programming"](http://www.clojurebook.com/)や["The Joy of Clojure"](http://joyofclojure.com/)のような高い評価を受けている様々なリソースに基づいている。
 
 このスタイルガイドはまだ作成途中です。そのため、いくつかのセクションが欠けていた
 り、不完全であったり、いくつかの規約には例がなかったり、それが明快でなかったりし
@@ -366,9 +361,7 @@ pairwise constructs as found in e.g. `let` and `cond`.
 * Prefer higher-order functions like `map` to `loop/recur`.
 
 * 関数本体内では、コンディションマップによる入力値、出力値のチェックがより良い。
-<!--
-* Prefer function pre and post conditions to checks inside a function's body.
--->
+<!-- * Prefer function pre and post conditions to checks inside a function's body. -->
 
     ```Clojure
     ;; good
@@ -384,9 +377,7 @@ pairwise constructs as found in e.g. `let` and `cond`.
     ```
 
 * 関数内でvarを定義しない。
-<!--
-* Don't define vars inside functions.
--->
+<!-- * Don't define vars inside functions. -->
 
     ```Clojure
     ;; very bad
@@ -395,7 +386,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
       ...)
     ```
 
-* Don't shadow `clojure.core` names with local bindings.
+* ローカル束縛によって`clojure.core`の名前を隠さない。
+<!-- * Don't shadow `clojure.core` names with local bindings. -->
 
     ```Clojure
     ;; bad - you're forced to used clojure.core/map fully qualified inside
@@ -420,7 +412,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
         (recur (rest s))))
     ```
 
-* Use `when` instead of `(if ... (do ...)`.
+* `(if ... (do ...)`の代わりに`when`を使う。
+<!-- * Use `when` instead of `(if ... (do ...)`. -->
 
     ```Clojure
     ;; good
@@ -434,8 +427,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
         (foo)
         (bar)))
     ```
-
-* Use `if-let` instead of `let` + `if`.
+* `let` + `if`の代わりに`if-let`を使う。
+<!-- * Use `if-let` instead of `let` + `if`. -->
 
     ```Clojure
     ;; good
@@ -450,7 +443,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
         (something-else)))
     ```
 
-* Use `when-let` instead of `let` + `when`.
+* `let` + `when`の代わりに`when-let`を使う。
+<!-- * Use `when-let` instead of `let` + `when`. -->
 
     ```Clojure
     ;; good
@@ -465,7 +459,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
         (do-something-more-with result)))
     ```
 
-* Use `if-not` instead of `(if (not ...) ...)`.
+* `(if (not ...) ...)`の代わりに`if-not`を使う。
+<!-- * Use `if-not` instead of `(if (not ...) ...)`. -->
 
     ```Clojure
     ;; good
@@ -477,7 +472,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
       (foo))
     ```
 
-* Use `when-not` instead of `(when (not ...) ...)`.
+* `(when (not ...) ...)`の代わりに`when-not`を使う。
+<!-- * Use `when-not` instead of `(when (not ...) ...)`. -->
 
     ```Clojure
     ;; good
@@ -491,7 +487,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
       (bar))
     ```
 
-* Use `when-not` instead of `(if-not ... (do ...)`.
+* `(if-not ... (do ...)`の代わりに`when-not`を使う。
+<!-- * Use `when-not` instead of `(if-not ... (do ...)`. -->
 
     ```Clojure
     ;; good
@@ -506,7 +503,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
         (bar)))
     ```
 
-* Use `not=` instead of `(not (= ...))`.
+* `(not (= ...))`の代わりに`not=`を使う。
+<!-- * Use `not=` instead of `(not (= ...))`. -->
 
     ```Clojure
     ;; good
@@ -527,7 +525,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
     (and (> x 5) (< x 10))
     ```
 
-* Prefer `%` over `%1` in function literals with only one parameter.
+* ただひとつのパラメータを持つ関数リテラルでは、`%1`よりも`%`のほうが好ましい。
+<!-- * Prefer `%` over `%1` in function literals with only one parameter. -->
 
     ```Clojure
     ;; good
@@ -537,7 +536,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
     #(Math/round %1)
     ```
 
-* Prefer `%1` over `%` in function literals with more than one parameter.
+* ふたつ以上のパラメータを持つ関数リテラルでは、`%`よりも`%1`のほうが好ましい。
+<!-- * Prefer `%1` over `%` in function literals with more than one parameter. -->
 
     ```Clojure
     ;; good
@@ -547,7 +547,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
     #(Math/pow % %2)
     ```
 
-* Don't wrap functions in anonymous functions when you don't need to.
+* 必要ないなら無名関数をラップしない。
+<!-- * Don't wrap functions in anonymous functions when you don't need to. -->
 
     ```Clojure
     ;; good
@@ -640,7 +641,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
     (.. System getProperties (get "os.name"))
     ```
 
-* Use `:else` as the catch-all test expression in `cond` and `condp`.
+* `cond`や`condp`で残り全ての条件をキャッチするときは`:else`を使う。
+<!-- * Use `:else` as the catch-all test expression in `cond` and `condp`. -->
 
     ```Clojure
     ;; good
