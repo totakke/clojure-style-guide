@@ -34,7 +34,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## 目次
 
-* [ソースコードのレイアウトと所属](#source-code-layout--organization)
+* [ソースコードのレイアウトと構造](#source-code-layout--organization)
 * [文法](#syntax)
 * [命名規則](#naming)
 * [コレクション](#collections)
@@ -45,7 +45,7 @@ You can generate a PDF or an HTML copy of this guide using
 * [コメント](#comments)
     * [コメントアノテーション](#comment-annotations)
 * [Existential](#existential)
-* [Tooling](#tooling)
+* [ツール](#tooling)
 
 <!--
 ## Table of Contents
@@ -64,7 +64,7 @@ You can generate a PDF or an HTML copy of this guide using
 * [Tooling](#tooling)
 -->
 
-## ソースコードのレイアウトと所属
+## ソースコードのレイアウトと構造
 
 <!--
 ## Source Code Layout & Organization
@@ -183,21 +183,25 @@ You can generate a PDF or an HTML copy of this guide using
       (bar))
     ```
 
-* Use Unix-style line endings. (*BSD/Solaris/Linux/OSX users are
-  covered by default, Windows users have to be extra careful.)
-    * If you're using Git you might want to add the following
-    configuration setting to protect your project from Windows line
-    endings creeping in:
+* Unixスタイルの行エンコーディングを使用する。（*BSD/Solaris/Linux/OSXユーザはデフォルトでカバーされているが、Windowsユーザは特に注意すること。）
+    * Gitを使っているなら、次の設定をしてもいいかもしれない。
+<!-- * Use Unix-style line endings. (*BSD/Solaris/Linux/OSX users are -->
+<!--   covered by default, Windows users have to be extra careful.) -->
+<!--     * If you're using Git you might want to add the following -->
+<!--     configuration setting to protect your project from Windows line -->
+<!--     endings creeping in: -->
 
         ```bash
         $ git config --global core.autocrlf true
         ```
 
-* If any text precedes an opening bracket(`(`, `{` and
-`[`) or follows a closing bracket(`)`, `}` and `]`), separate that
-text from that bracket with a space. Conversely, leave no space after
-an opening bracket and before following text, or after preceding text
-and before a closing bracket.
+* 開き括弧（`(`, `{`}, `[`）の前の文字と、閉じ括弧（`)`, `}`, `]`）の後の文字は、括弧との間にスペースを設ける。
+逆に、開き括弧とそれに続く文字、閉じ括弧と直前の文字の間にはスペースを入れない。
+<!-- * If any text precedes an opening bracket(`(`, `{` and -->
+<!-- `[`) or follows a closing bracket(`)`, `}` and `]`), separate that -->
+<!-- text from that bracket with a space. Conversely, leave no space after -->
+<!-- an opening bracket and before following text, or after preceding text -->
+<!-- and before a closing bracket. -->
 
     ```Clojure
     ;; good
@@ -265,7 +269,7 @@ and before a closing bracket.
     (defn foo ...)
     ```
 
-    例外として、関係する`def`はまとめてしまっても良い。
+    例外として、関連する`def`はまとめてしまっても良い。
     <!-- An exception to the rule is the grouping of related `def`s together. -->
 
     ```Clojure
@@ -280,11 +284,15 @@ and before a closing bracket.
 macro definition.  An exception can be made to indicate grouping of
 pairwise constructs as found in e.g. `let` and `cond`.
 
-* Where feasible, avoid making lines longer than 80 characters.
-* Avoid trailing whitespace.
-* Use one file per namespace.
-* Start every namespace with a comprehensive `ns` form, comprised of
-  `import`s, `require`s, `refer`s and `use`s.
+* 1行が80文字を超えないようにする。
+* 行末の空白を避ける。
+* 名前空間ごとにファイルを分ける。
+* 全ての名前空間は、複数の`import`、複数の`require`、複数の`use`からなる`ns`フォームで始める。
+<!-- * Where feasible, avoid making lines longer than 80 characters. -->
+<!-- * Avoid trailing whitespace. -->
+<!-- * Use one file per namespace. -->
+<!-- * Start every namespace with a comprehensive `ns` form, comprised of -->
+<!--   `import`s, `require`s, `refer`s and `use`s. -->
 
     ```Clojure
     (ns examples.ns
@@ -299,7 +307,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
                                      LinkedBlockingQueue)))
     ```
 
-* Avoid single-segment namespaces.
+* 単一セグメントの名前空間を使わない。
+<!-- * Avoid single-segment namespaces. -->
 
     ```Clojure
     ;; good
@@ -309,14 +318,21 @@ pairwise constructs as found in e.g. `let` and `cond`.
     (ns example)
     ```
 
-* Avoid the use of overly long namespaces(i.e. with more than 5 segments).
+* 無駄に長い名前空間を使わない（例えば、5セグメントを超えるような）。
+<!-- * Avoid the use of overly long namespaces(i.e. with more than 5 segments). -->
 
-* Avoid functions longer than 10 LOC (lines of code). Ideally, most
-  functions will be shorter than 5 LOC.
+* 関数は10行を超えないようにする。理想的には、ほとんどの関数は5行より短くしたほうが良い。
+<!-- * Avoid functions longer than 10 LOC (lines of code). Ideally, most -->
+<!--   functions will be shorter than 5 LOC. -->
 
-* Avoid parameter lists with more than three or four positional parameters.
+* 3つか4つを超えるパラメータを持つパラメータリストの使用を避ける。
+<!-- * Avoid parameter lists with more than three or four positional parameters. -->
 
+## 文法
+
+<!--
 ## Syntax
+-->
 
 * Avoid the use of namespace-manipulating functions like `require` and
   `refer`. They are entirely unnecessary outside of a REPL
@@ -1159,7 +1175,11 @@ you need to comment out a particular form.
 * Be consistent. In an ideal world, be consistent with these guidelines.
 * Use common sense.
 
+## ツール
+
+<!--
 ## Tooling
+-->
 
 There are some tools created by the Clojure community that might aid you
 in your endeavor to write idiomatic Clojure code.
