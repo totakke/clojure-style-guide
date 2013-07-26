@@ -7,6 +7,30 @@
 > Role models are important. <br/>
 > -- Officer Alex J. Murphy / RoboCop
 
+このClojureスタイルガイドは、実際のClojureプログラマーが他のClojureプログラマー
+に保守されるコードを書くための、最善のルールを推奨します。
+A style guide that reflects real-world usage gets used, and a
+style guide that holds to an ideal that has been rejected by the people it is
+supposed to help risks not getting used at all &ndash; no matter how good it is.
+
+関連する規約ごとにいくつかのセクションに分かれて構成されています。規約には理論
+的根拠を付けるようにしています（根拠が明らかな場合は省略しています）。
+
+I didn't come up with all the rules out of nowhere - they are mostly
+based on my extensive career as a professional software engineer,
+feedback and suggestions from members of the Clojure community, and
+various highly regarded Clojure programming resources, such as
+["Clojure Programming"](http://www.clojurebook.com/)
+and ["The Joy of Clojure"](http://joyofclojure.com/).
+
+このスタイルガイドはまだ作成途中です。そのため、いくつかのセクションが欠けていた
+り、不完全であったり、いくつかの規約には例がなかったり、それが明快でなかったりし
+ます。これらの問題が解決されるまで、それを念頭に置いてください。
+
+[Transmuter](https://github.com/TechnoGate/transmuter)を利用することで、このスタ
+イルガイドのPDF版やHTML版を生成することができます。
+
+<!--
 This Clojure style guide recommends best practices so that real-world Clojure
 programmers can write code that can be maintained by other real-world Clojure
 programmers. A style guide that reflects real-world usage gets used, and a
@@ -31,6 +55,7 @@ these issues will be addressed - just keep them in mind for now.
 
 You can generate a PDF or an HTML copy of this guide using
 [Transmuter](https://github.com/TechnoGate/transmuter).
+-->
 
 ## 目次
 
@@ -195,7 +220,7 @@ You can generate a PDF or an HTML copy of this guide using
         $ git config --global core.autocrlf true
         ```
 
-* 開き括弧（`(`, `{`}, `[`）の前の文字と、閉じ括弧（`)`, `}`, `]`）の後の文字は、括弧との間にスペースを設ける。
+* 開き括弧（`(`, `{`, `[`）の前の文字と、閉じ括弧（`)`, `}`, `]`）の後の文字は、括弧との間にスペースを設ける。
 逆に、開き括弧とそれに続く文字、閉じ括弧と直前の文字の間にはスペースを入れない。
 <!-- * If any text precedes an opening bracket(`(`, `{` and -->
 <!-- `[`) or follows a closing bracket(`)`, `}` and `]`), separate that -->
@@ -340,7 +365,10 @@ pairwise constructs as found in e.g. `let` and `cond`.
 * Use `declare` to enable forward references.
 * Prefer higher-order functions like `map` to `loop/recur`.
 
+* 関数本体内では、コンディションマップによる入力値、出力値のチェックがより良い。
+<!--
 * Prefer function pre and post conditions to checks inside a function's body.
+-->
 
     ```Clojure
     ;; good
@@ -355,7 +383,10 @@ pairwise constructs as found in e.g. `let` and `cond`.
         (throw (IllegalArgumentException "x must be a positive number!")))
     ```
 
+* 関数内でvarを定義しない。
+<!--
 * Don't define vars inside functions.
+-->
 
     ```Clojure
     ;; very bad
