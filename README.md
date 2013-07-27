@@ -79,7 +79,7 @@ You can generate a PDF or an HTML copy of this guide using
 * [Tooling](#tooling)
 -->
 
-## ソースコードのレイアウトと構造
+## <a name="source-code-layout--organization">ソースコードのレイアウトと構造
 
 <!--
 ## Source Code Layout & Organization
@@ -90,7 +90,7 @@ You can generate a PDF or an HTML copy of this guide using
 > probably right... <br/>
 > -- Jerry Coffin (on indentation)
 
-* 各インデントには2つの**スペース**を使う。タブは使わない。
+* 各インデントには2つの **スペース** を使う。タブは使わない。
 <!-- * Use two **spaces** per indentation level. No hard tabs. -->
 
     ```Clojure
@@ -344,15 +344,15 @@ You can generate a PDF or an HTML copy of this guide using
 * 3つか4つを超えるパラメータを持つパラメータリストの使用を避ける。
 <!-- * Avoid parameter lists with more than three or four positional parameters. -->
 
-## 文法
+## <a name="syntax">文法
 
 <!--
 ## Syntax
 -->
 
 * `require`や`refer`のような名前空間を扱う関数の使用を避ける。これらはREPL環境以外では必要ないものだ。
-* Use `declare` to enable forward references.
-* Prefer higher-order functions like `map` to `loop/recur`.
+* 前方参照を可能にするには`declare`を使う。
+* `loop/recur`よりも`map`のように、より高階な関数のほうが好ましい。
 <!-- * Avoid the use of namespace-manipulating functions like `require` and -->
 <!--   `refer`. They are entirely unnecessary outside of a REPL -->
 <!--   environment. -->
@@ -394,8 +394,9 @@ You can generate a PDF or an HTML copy of this guide using
       ...)
     ```
 
-* Use `seq` as a terminating condition to test whether a sequence is
-  empty (this technique is sometimes called *nil punning*).
+* シーケンスが空かどうかをチェックするには`seq`を使う（このテクニックはしばしば *nil punning* と呼ばれる）。
+<!-- * Use `seq` as a terminating condition to test whether a sequence is -->
+<!--   empty (this technique is sometimes called *nil punning*). -->
 
     ```Clojure
     ;; good
@@ -513,8 +514,9 @@ You can generate a PDF or an HTML copy of this guide using
     (not (= foo bar))
     ```
 
-* When doing comparisons keep in mind that Clojure's functions `<`,
-  `>`, etc accept variable number of arguments.
+* 比較を行うときは、Clojure関数の`<`や`>`などは可変引数を許していることを覚えておこう。
+<!-- * When doing comparisons keep in mind that Clojure's functions `<`, -->
+<!--   `>`, etc accept variable number of arguments. -->
 
     ```Clojure
     ;; good
@@ -662,8 +664,9 @@ You can generate a PDF or an HTML copy of this guide using
       true "zero"))
     ```
 
-* Prefer `condp` instead of `cond` when the predicate & expression don't
-  change.
+* 述語と式が変わらない場合、`cond`よりも`condp`のほうが良い。
+<!-- * Prefer `condp` instead of `cond` when the predicate & expression don't -->
+<!--   change. -->
 
     ```Clojure
     ;; good
@@ -681,8 +684,9 @@ You can generate a PDF or an HTML copy of this guide using
       :dunno)
     ```
 
-* Prefer `case` instead of `cond` or `condp` when test expressions are
-compile-time constants.
+* テスト式がコンパイル時に固定の場合、`cond`や`condp`の代わりに`case`を使うのが良い。
+<!-- * Prefer `case` instead of `cond` or `condp` when test expressions are -->
+<!-- compile-time constants. -->
 
     ```Clojure
     ;; good
@@ -847,7 +851,7 @@ hints for the pairwise grouping with comments or empty lines.
     (meta #'a) ;=> nil
     ```
 
-## 命名規約
+## <a name="naming">命名規約
 
 <!--
 ## Naming
@@ -882,9 +886,10 @@ hints for the pairwise grouping with comments or empty lines.
 * プロトコル、レコード、構造体、型には`CamelCase`を用いる。（HTTP, RFC, XMLのような頭字語は大文字を保持する。）
 <!-- * Use `CamelCase` for protocols, records, structs, and types. (Keep -->
 <!--   acronyms like HTTP, RFC, XML uppercase.) -->
-* The names of predicate methods (methods that return a boolean value)
-  should end in a question mark.
-  (i.e. `even?`).
+* 述語（ブール値を返す関数）の名前はクエスチョンマーク（?）で終わるべきだ。（例：`even?`）
+<!-- * The names of predicate methods (methods that return a boolean value) -->
+<!--   should end in a question mark. -->
+<!--   (i.e. `even?`). -->
 
     ```Clojure
     ;; good
@@ -895,8 +900,9 @@ hints for the pairwise grouping with comments or empty lines.
     (defn is-palindrome ...) ; Java style
     ```
 
-* The names of functions/macros that are not safe in STM transactions
-  should end with an exclamation mark. (i.e. `reset!`)
+* STMトランザクションの中で安全でない関数・マクロの名前はエクスクラメーションマーク（!）で終わるべきだ。（例：`reset!`）
+<!-- * The names of functions/macros that are not safe in STM transactions -->
+<!--   should end with an exclamation mark. (i.e. `reset!`) -->
 * 変換のための関数名には`to`ではなく`->`を用いる。
 <!-- * Use `->` instead of `to` in the names of conversion functions. -->
 
@@ -954,22 +960,25 @@ hints for the pairwise grouping with comments or empty lines.
         * `expr` - an expression
         * `body` - a macro body
         * `binding` - a macro binding vector
-<!-- * Follow `clojure.core`'s example for idiomatic names like `pred` and `coll`. -->
-<!--     * in functions: -->
-<!--         * `f`, `g`, `h` - function input -->
-<!--         * `n` - integer input usually a size -->
-<!--         * `index` - integer index -->
-<!--         * `x`, `y` - numbers -->
-<!--         * `s` - string input -->
-<!--         * `coll` - a collection -->
-<!--         * `pred` - a predicate closure -->
-<!--         * `& more` - variadic input -->
-<!--     * in macros: -->
-<!--         * `expr` - an expression -->
-<!--         * `body` - a macro body -->
-<!--         * `binding` - a macro binding vector -->
 
-## コレクション
+<!--
+* Follow `clojure.core`'s example for idiomatic names like `pred` and `coll`.
+    * in functions:
+        * `f`, `g`, `h` - function input
+        * `n` - integer input usually a size
+        * `index` - integer index
+        * `x`, `y` - numbers
+        * `s` - string input
+        * `coll` - a collection
+        * `pred` - a predicate closure
+        * `& more` - variadic input
+    * in macros:
+        * `expr` - an expression
+        * `body` - a macro body
+        * `binding` - a macro binding vector
+-->
+
+## <a name="collections">コレクション
 
 <!--
 ## Collections
@@ -1051,13 +1060,17 @@ hints for the pairwise grouping with comments or empty lines.
 * Avoid the use of Java arrays, except for interop scenarios and
 performance-critical code dealing heavily with primitive types.
 
-## 状態
+## <a name="mutation">状態
 
 <!--
 ## Mutation
 -->
 
+### ref
+
+<!--
 ### Refs
+-->
 
 * Consider wrapping all I/O calls with the `io!` macro to avoid nasty
 surprises if you accidentally end up calling such code in a
@@ -1079,14 +1092,23 @@ as small as possible.
 * Avoid having both short- and long-running transactions interacting
   with the same Ref.
 
+### エージェント
+
+<!--
 ### Agents
+-->
 
 * Use `send` only for actions that are CPU bound and don't block on I/O
   or other threads.
 * Use `send-off` for actions that might block, sleep, or otherwise tie
   up the thread.
 
+
+### アトム
+
+<!--
 ### Atoms
+-->
 
 * Avoid atom updates inside STM transactions.
 * Try to use `swap!` rather than `reset!`, where possible.
@@ -1101,7 +1123,7 @@ as small as possible.
     (reset! a 5)
     ```
 
-## 文字列
+## <a name="strings">文字列
 
 * 文字列処理は、Java呼び出しや自分で書くよりも、`clojure.string`の関数を使うほうが好ましい。
 <!-- * Prefer string manipulation functions from `clojure.string` over Java interop or rolling your own. -->
@@ -1114,7 +1136,7 @@ as small as possible.
     (.toUpperCase "bruce")
     ```
 
-## 例外
+## <a name="exceptions">例外
 
 * 既存の例外型を再利用する。慣用的なClojureコードでは、例外を投げるとき、基本的な例外型を用いている。
   （例： `java.lang.IllegalArgumentException`,
@@ -1131,7 +1153,7 @@ as small as possible.
 * Favor `with-open` over `finally`.
 -->
 
-## マクロ
+## <a name="macros">マクロ
 
 <!--
 ## Macros
@@ -1155,7 +1177,7 @@ as small as possible.
 * Prefer syntax-quoted forms over building lists manually.
 -->
 
-## コメント
+## <a name="comments">コメント
 
 <!--
 ## Comments
@@ -1167,13 +1189,14 @@ as small as possible.
 > it even clearer. <br/>
 > -- Steve McConnell
 
-* Endeavor to make your code as self-documenting as possible.
+* 出来る限り、コードを見れば何をしているのか分かるように努める。
+<!-- * Endeavor to make your code as self-documenting as possible. -->
 
 * ヘッダーコメントには最低4つのセミコロンを用いる。
 <!-- * Write heading comments with at least four semicolons. -->
 
 * トップレベルのコメントには3つのセミコロンを用いる。
-<!-- * Write top-level comments with three semicolon -->s.
+<!-- * Write top-level comments with three semicolons. -->
 
 * Write comments on a particular fragment of code before that fragment
 and aligned with it, using two semicolons.
@@ -1203,15 +1226,17 @@ and aligned with it, using two semicolons.
 * Comments longer than a word begin with a capital letter and use
   punctuation. Separate sentences with
   [one space](http://en.wikipedia.org/wiki/Sentence_spacing).
-* Avoid superfluous comments.
+* 無駄なコメントを避ける。
+<!-- * Avoid superfluous comments. -->
 
     ```Clojure
     ;; bad
     (inc counter) ; increments counter by one
     ```
 
-* Keep existing comments up-to-date. An outdated comment is worse than no comment
-at all.
+* コメントは常に更新していなければならない。古いコメントはコメントがないことよりも害悪だ。
+<!-- * Keep existing comments up-to-date. An outdated comment is worse than no comment -->
+<!-- at all. -->
 * Prefer the use of the `#_` reader macro over a regular comment when
 you need to comment out a particular form.
 
@@ -1229,11 +1254,13 @@ you need to comment out a particular form.
 > -- Russ Olsen
 
 * 悪いコードを説明するためにコメントを書くことを避ける。コードをリファクタリングして、コメントが不要なようにするべきだ。 ("Do, or do not. There is no try." --Yoda)
-<!-- * Avoid writing comments to explain bad code. Refactor the code to -->
-<!--   make it self-explanatory. ("Do, or do not. There is no try." --Yoda) -->
 
+<!--
+* Avoid writing comments to explain bad code. Refactor the code to
+  make it self-explanatory. ("Do, or do not. There is no try." --Yoda)
+-->
 
-### コメントアノテーション
+### <a name="comment-annotations">コメントアノテーション
 
 <!--
 ### Comment Annotations
@@ -1285,7 +1312,7 @@ you need to comment out a particular form.
 * Be consistent. In an ideal world, be consistent with these guidelines.
 * Use common sense.
 
-## ツール
+## <a name="tooling">ツール
 
 <!--
 ## Tooling
@@ -1293,8 +1320,10 @@ you need to comment out a particular form.
 
 慣用的なClojureコードを書くのを助けてくれるツールがClojureコミュニティによって作られている。
 
-<!-- There are some tools created by the Clojure community that might aid you -->
-<!-- in your endeavor to write idiomatic Clojure code. -->
+<!--
+There are some tools created by the Clojure community that might aid you
+in your endeavor to write idiomatic Clojure code.
+-->
 
 * [Slamhound](https://github.com/technomancy/slamhound)は既存のコードから適切な`ns`定義を自動的に生成してくれる。
 * [kibit](https://github.com/jonase/kibit)はClojure向けの静的コード解析ツールだ。より慣用的な関数やマクロの探索には[core.logic](https://github.com/clojure/core.logic)を用いている。
