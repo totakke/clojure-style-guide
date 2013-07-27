@@ -7,23 +7,18 @@
 > Role models are important. <br/>
 > -- Officer Alex J. Murphy / RoboCop
 
-このClojureスタイルガイドは、実際のClojureプログラマーが他のClojureプログラマー
-に保守されるコードを書くための、最善のルールを推奨します。
+このClojureスタイルガイドは、実際のClojureプログラマーが他のClojureプログラマーに保守されるコードを書くための、最善のルールを推奨するものだ。
 A style guide that reflects real-world usage gets used, and a
 style guide that holds to an ideal that has been rejected by the people it is
 supposed to help risks not getting used at all &ndash; no matter how good it is.
 
-関連する規約ごとにいくつかのセクションに分かれて構成されています。規約には理論
-的根拠を付けるようにしています（根拠が明らかな場合は省略しています）。
+関連する規約ごとにいくつかのセクションに分かれて構成されている。規約には理論的根拠を付けるようにした（ただし、根拠が明らかな場合は省略している）。
 
 これらの規約は、出し抜けに考えだされたものではない。これらの多くは、私のプロソフトウェアエンジニアとしての幅広い仕事や、Clojureコミュニティメンバーからのフィードバックと意見、そして、["Clojure Programming"](http://www.clojurebook.com/)や["The Joy of Clojure"](http://joyofclojure.com/)のような高い評価を受けている様々なリソースに基づいている。
 
-このスタイルガイドはまだ作成途中です。そのため、いくつかのセクションが欠けていた
-り、不完全であったり、いくつかの規約には例がなかったり、それが明快でなかったりし
-ます。これらの問題が解決されるまで、それを念頭に置いてください。
+このスタイルガイドはまだ作成途中だ。そのため、いくつかのセクションが欠けていたり、不完全であったり、いくつかの規約には例がなかったり、それが明快でなかったりする。これらの問題が解決されるまで、それを念頭に置いてほしい。
 
-[Transmuter](https://github.com/TechnoGate/transmuter)を利用することで、このスタ
-イルガイドのPDF版やHTML版を生成することができます。
+[Transmuter](https://github.com/TechnoGate/transmuter)を利用することで、このスタイルガイドのPDF版やHTML版を生成することができる。
 
 <!--
 This Clojure style guide recommends best practices so that real-world Clojure
@@ -56,7 +51,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 * [ソースコードのレイアウトと構造](#source-code-layout--organization)
 * [文法](#syntax)
-* [命名規則](#naming)
+* [命名規約](#naming)
 * [コレクション](#collections)
 * [状態](#mutation)
 * [文字列](#strings)
@@ -300,9 +295,10 @@ You can generate a PDF or an HTML copy of this guide using
     (def max-cols 30)
     ```
 
-* Do not place blank lines in the middle of a function or
-macro definition.  An exception can be made to indicate grouping of
-pairwise constructs as found in e.g. `let` and `cond`.
+* 関数やマクロ定義の中には空白行を入れない。ただし、`let`や`cond`などの中においてペアをグループ分けするために入れるのは良い。
+<!-- * Do not place blank lines in the middle of a function or -->
+<!-- macro definition.  An exception can be made to indicate grouping of -->
+<!-- pairwise constructs as found in e.g. `let` and `cond`. -->
 
 * 1行が80文字を超えないようにする。
 * 行末の空白を避ける。
@@ -354,11 +350,14 @@ pairwise constructs as found in e.g. `let` and `cond`.
 ## Syntax
 -->
 
-* Avoid the use of namespace-manipulating functions like `require` and
-  `refer`. They are entirely unnecessary outside of a REPL
-  environment.
+* `require`や`refer`のような名前空間を扱う関数の使用を避ける。これらはREPL環境以外では必要ないものだ。
 * Use `declare` to enable forward references.
 * Prefer higher-order functions like `map` to `loop/recur`.
+<!-- * Avoid the use of namespace-manipulating functions like `require` and -->
+<!--   `refer`. They are entirely unnecessary outside of a REPL -->
+<!--   environment. -->
+<!-- * Use `declare` to enable forward references. -->
+<!-- * Prefer higher-order functions like `map` to `loop/recur`. -->
 
 * 関数本体内では、コンディションマップによる入力値、出力値のチェックがより良い。
 <!-- * Prefer function pre and post conditions to checks inside a function's body. -->
@@ -525,7 +524,7 @@ pairwise constructs as found in e.g. `let` and `cond`.
     (and (> x 5) (< x 10))
     ```
 
-* ただひとつのパラメータを持つ関数リテラルでは、`%1`よりも`%`のほうが好ましい。
+* ただ1つのパラメータを持つ関数リテラルでは、`%1`よりも`%`のほうが好ましい。
 <!-- * Prefer `%` over `%1` in function literals with only one parameter. -->
 
     ```Clojure
@@ -558,8 +557,9 @@ pairwise constructs as found in e.g. `let` and `cond`.
     (filter #(even? %) (range 1 10))
     ```
 
-* Don't use function literals if the function body will consist of
-  more than one form.
+* 関数本体が2つ以上のフォームを含む場合は、関数リテラルを使用しない。
+<!-- * Don't use function literals if the function body will consist of -->
+<!--   more than one form. -->
 
     ```Clojure
     ;; good
@@ -585,7 +585,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
     This rule should obviously be ignored if the complementing predicate
     exists in the form of a separate function (e.g. `even?` and `odd?`).
 
-* Leverage `comp` when it would yield simpler code.
+* コードをシンプルにするために`comp`の使用を考える。
+<!-- * Leverage `comp` when it would yield simpler code. -->
 
     ```Clojure
     ;; Assuming `(:require [clojure.string :as str])`...
@@ -597,7 +598,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
     (map (comp str/capitalize str/trim) ["top " " test "])
     ```
 
-* Leverage `partial` when it would yield simpler code.
+* コードをシンプルにするために`partial`の使用を考える。
+<!-- * Leverage `partial` when it would yield simpler code. -->
 
     ```Clojure
     ;; good
@@ -607,8 +609,9 @@ pairwise constructs as found in e.g. `let` and `cond`.
     (map (partial + 5) (range 1 10))
     ```
 
-* Prefer the use of the threading macros `->` (thread-first) and `->>`
-(thread-last) to heavy form nesting.
+* 深いネストよりもスレッディングマクロ`->` (thread-first)と`->>` (thread-last)の使用が好ましい。
+<!-- * Prefer the use of the threading macros `->` (thread-first) and `->>` -->
+<!-- (thread-last) to heavy form nesting. -->
 
     ```Clojure
     ;; good
@@ -631,7 +634,8 @@ pairwise constructs as found in e.g. `let` and `cond`.
          (filter even? (range 1 10)))
     ```
 
-* Prefer `..` to `->` when chaining method calls in Java interop.
+* Java呼び出しの際のチェーンメソッドコールには、`->`よりも`..`が好ましい。
+<!-- * Prefer `..` to `->` when chaining method calls in Java interop. -->
 
     ```Clojure
     ;; good
@@ -755,10 +759,12 @@ hints for the pairwise grouping with comments or empty lines.
                    "mary had a little lamb"))
     ```
 
-* Use `(inc x)` & `(dec x)` instead of `(+ x 1)` and `(- x 1)`.
+* `(+ x 1)`や`(- x 1)`の代わりに`(inc x)`や`(dec x)`を使う。
+<!-- * Use `(inc x)` & `(dec x)` instead of `(+ x 1)` and `(- x 1)`. -->
 
-* Use `(pos? x)`, `(neg? x)` & `(zero? x)` instead of `(> x 0)`,
-`(< x 0)` & `(= x 0)`.
+* `(> x 0)`, `(< x 0)`, `(= x 0)`の代わりに`(pos? x)`, `(neg? x)`, `(zero? x)`を使う。
+<!-- * Use `(pos? x)`, `(neg? x)` & `(zero? x)` instead of `(> x 0)`, -->
+<!-- `(< x 0)` & `(= x 0)`. -->
 
 * Use the sugared Java interop forms.
 
@@ -810,7 +816,8 @@ hints for the pairwise grouping with comments or empty lines.
     (def ^{:private true} a 5)
     ```
 
-* Denote private parts of your code.
+* コード中のプライベート部分には印を付ける。
+<!-- * Denote private parts of your code. -->
 
     ```Clojure
     ;; good
@@ -840,17 +847,26 @@ hints for the pairwise grouping with comments or empty lines.
     (meta #'a) ;=> nil
     ```
 
+## 命名規約
+
+<!--
 ## Naming
+-->
 
 > The only real difficulties in programming are cache invalidation and
 > naming things. <br/>
 > -- Phil Karlton
 
-* When naming namespaces favor the following two schemas:
+* 名前空間は次の2つの名づけ方が好ましい。
     * `project.module`
     * `organization.project.module`
-* Use `lisp-case` in composite namespace segments(e.g. `bruce.project-euler`)
-* Use `lisp-case` for function and variable names.
+* 複数単語からなる名前空間セグメントには`lisp-case`を使う（例：`bruce.project-euler`）
+* 関数名や変数名には`lisp-case`を使う。
+<!-- * When naming namespaces favor the following two schemas: -->
+<!--     * `project.module` -->
+<!--     * `organization.project.module` -->
+<!-- * Use `lisp-case` in composite namespace segments(e.g. `bruce.project-euler`) -->
+<!-- * Use `lisp-case` for function and variable names. -->
 
     ```Clojure
     ;; good
@@ -863,8 +879,9 @@ hints for the pairwise grouping with comments or empty lines.
     (def some_fun ...)
     ```
 
-* Use `CamelCase` for protocols, records, structs, and types. (Keep
-  acronyms like HTTP, RFC, XML uppercase.)
+* プロトコル、レコード、構造体、型には`CamelCase`を用いる。（HTTP, RFC, XMLのような頭字語は大文字を保持する。）
+<!-- * Use `CamelCase` for protocols, records, structs, and types. (Keep -->
+<!--   acronyms like HTTP, RFC, XML uppercase.) -->
 * The names of predicate methods (methods that return a boolean value)
   should end in a question mark.
   (i.e. `even?`).
@@ -880,7 +897,8 @@ hints for the pairwise grouping with comments or empty lines.
 
 * The names of functions/macros that are not safe in STM transactions
   should end with an exclamation mark. (i.e. `reset!`)
-* Use `->` instead of `to` in the names of conversion functions.
+* 変換のための関数名には`to`ではなく`->`を用いる。
+<!-- * Use `->` instead of `to` in the names of conversion functions. -->
 
     ```Clojure
     ;; good
@@ -890,7 +908,8 @@ hints for the pairwise grouping with comments or empty lines.
     (defn f-to-c ...)
     ```
 
-* Use `*earmuffs*` for things intended for rebinding (ie. are dynamic).
+* 再束縛を想定しているものには`*earmuffs*`を使う（dynamicのような）。
+<!-- * Use `*earmuffs*` for things intended for rebinding (ie. are dynamic). -->
 
     ```Clojure
     ;; good
@@ -921,8 +940,8 @@ hints for the pairwise grouping with comments or empty lines.
       (println "Hello!"))
     ```
 
-* Follow `clojure.core`'s example for idiomatic names like `pred` and `coll`.
-    * in functions:
+* `pred`や`coll`のような慣習名には`clojure.core`の例が参考になる。
+    * 関数内では、
         * `f`, `g`, `h` - function input
         * `n` - integer input usually a size
         * `index` - integer index
@@ -931,12 +950,30 @@ hints for the pairwise grouping with comments or empty lines.
         * `coll` - a collection
         * `pred` - a predicate closure
         * `& more` - variadic input
-    * in macros:
+    * マクロ内では、
         * `expr` - an expression
         * `body` - a macro body
         * `binding` - a macro binding vector
+<!-- * Follow `clojure.core`'s example for idiomatic names like `pred` and `coll`. -->
+<!--     * in functions: -->
+<!--         * `f`, `g`, `h` - function input -->
+<!--         * `n` - integer input usually a size -->
+<!--         * `index` - integer index -->
+<!--         * `x`, `y` - numbers -->
+<!--         * `s` - string input -->
+<!--         * `coll` - a collection -->
+<!--         * `pred` - a predicate closure -->
+<!--         * `& more` - variadic input -->
+<!--     * in macros: -->
+<!--         * `expr` - an expression -->
+<!--         * `body` - a macro body -->
+<!--         * `binding` - a macro binding vector -->
 
+## コレクション
+
+<!--
 ## Collections
+-->
 
 > It is better to have 100 functions operate on one data structure
 > than to have 10 functions operate on 10 data structures. <br/>
@@ -970,7 +1007,8 @@ hints for the pairwise grouping with comments or empty lines.
     #{(func1) (func2)} ; will throw runtime exception if (func1) = (func2)
     ```
 
-* Avoid accessing collection members by index whenever possible.
+* 可能ならコレクションの要素にインデックスでアクセスすることを避ける。
+<!-- * Avoid accessing collection members by index whenever possible. -->
 
 * Prefer the use of keywords as functions for retrieving values from
   maps, where applicable.
@@ -1003,10 +1041,12 @@ hints for the pairwise grouping with comments or empty lines.
     ((juxt :a :b) {:a "ala" :b "bala"})
     ```
 
-* Avoid the use of transient collections, except for
-performance-critical portions of the code.
+* パフォーマンス問題がクリティカルとなる部分を除いて、一時的なコレクションの使用を避ける。
+<!-- * Avoid the use of transient collections, except for -->
+<!-- performance-critical portions of the code. -->
 
-* Avoid the use of Java collections.
+* Javaのコレクションの使用を避ける。
+<!-- * Avoid the use of Java collections. -->
 
 * Avoid the use of Java arrays, except for interop scenarios and
 performance-critical code dealing heavily with primitive types.
@@ -1061,9 +1101,10 @@ as small as possible.
     (reset! a 5)
     ```
 
-## Strings
+## 文字列
 
-* Prefer string manipulation functions from `clojure.string` over Java interop or rolling your own.
+* 文字列処理は、Java呼び出しや自分で書くよりも、`clojure.string`の関数を使うほうが好ましい。
+<!-- * Prefer string manipulation functions from `clojure.string` over Java interop or rolling your own. -->
 
     ```Clojure
     ;; good
@@ -1073,17 +1114,38 @@ as small as possible.
     (.toUpperCase "bruce")
     ```
 
-## Exceptions
+## 例外
 
+* 既存の例外型を再利用する。慣用的なClojureコードでは、例外を投げるとき、基本的な例外型を用いている。
+  （例： `java.lang.IllegalArgumentException`,
+  `java.lang.UnsupportedOperationException`,
+  `java.lang.IllegalStateException`, `java.io.IOException`）。
+* `finally`よりも`with-open`のほうが好ましい。
+
+<!--
 * Reuse existing exception types. Idiomatic Clojure code, when it does
   throw an exception, throws an exception of a standard type
   (e.g. `java.lang.IllegalArgumentException`,
   `java.lang.UnsupportedOperationException`,
   `java.lang.IllegalStateException`, `java.io.IOException`).
 * Favor `with-open` over `finally`.
+-->
 
+## マクロ
+
+<!--
 ## Macros
+-->
 
+* その処理が関数でできるならマクロを書かない。
+* まずマクロの使用例を作成し、その後でマクロを作る。
+* 複雑なマクロは、可能なら小さい関数に分割する。
+* A macro should usually just provide syntactic sugar and the core of
+  the macro should be a plain function. Doing so will improve
+  composability.
+* Prefer syntax-quoted forms over building lists manually.
+
+<!--
 * Don't write a macro if a function will do.
 * Create an example of a macro usage first and the macro afterwards.
 * Break complicated macros into smaller functions whenever possible.
@@ -1091,8 +1153,13 @@ as small as possible.
   the macro should be a plain function. Doing so will improve
   composability.
 * Prefer syntax-quoted forms over building lists manually.
+-->
 
+## コメント
+
+<!--
 ## Comments
+-->
 
 > Good code is its own best documentation. As you're about to add a
 > comment, ask yourself, "How can I improve the code so that this
@@ -1102,17 +1169,21 @@ as small as possible.
 
 * Endeavor to make your code as self-documenting as possible.
 
-* Write heading comments with at least four semicolons.
+* ヘッダーコメントには最低4つのセミコロンを用いる。
+<!-- * Write heading comments with at least four semicolons. -->
 
-* Write top-level comments with three semicolons.
+* トップレベルのコメントには3つのセミコロンを用いる。
+<!-- * Write top-level comments with three semicolon -->s.
 
 * Write comments on a particular fragment of code before that fragment
 and aligned with it, using two semicolons.
 
-* Write margin comments with one semicolon.
+* マージンコメントには1つのセミコロンを用いる。
+<!-- * Write margin comments with one semicolon. -->
 
-* Always have at least one space between the semicolon
-and the text that follows it.
+* セミコロンとテキストの間には最低1つのスペースを入れる。
+<!-- * Always have at least one space between the semicolon -->
+<!-- and the text that follows it. -->
 
     ```Clojure
     ;;;; Frob Grovel
@@ -1157,10 +1228,16 @@ you need to comment out a particular form.
 > Good code is like a good joke - it needs no explanation. <br/>
 > -- Russ Olsen
 
-* Avoid writing comments to explain bad code. Refactor the code to
-  make it self-explanatory. ("Do, or do not. There is no try." --Yoda)
+* 悪いコードを説明するためにコメントを書くことを避ける。コードをリファクタリングして、コメントが不要なようにするべきだ。 ("Do, or do not. There is no try." --Yoda)
+<!-- * Avoid writing comments to explain bad code. Refactor the code to -->
+<!--   make it self-explanatory. ("Do, or do not. There is no try." --Yoda) -->
 
+
+### コメントアノテーション
+
+<!--
 ### Comment Annotations
+-->
 
 * Annotations should usually be written on the line immediately above
   the relevant code.
@@ -1214,9 +1291,15 @@ you need to comment out a particular form.
 ## Tooling
 -->
 
-There are some tools created by the Clojure community that might aid you
-in your endeavor to write idiomatic Clojure code.
+慣用的なClojureコードを書くのを助けてくれるツールがClojureコミュニティによって作られている。
 
+<!-- There are some tools created by the Clojure community that might aid you -->
+<!-- in your endeavor to write idiomatic Clojure code. -->
+
+* [Slamhound](https://github.com/technomancy/slamhound)は既存のコードから適切な`ns`定義を自動的に生成してくれる。
+* [kibit](https://github.com/jonase/kibit)はClojure向けの静的コード解析ツールだ。より慣用的な関数やマクロの探索には[core.logic](https://github.com/clojure/core.logic)を用いている。
+
+<!--
 * [Slamhound](https://github.com/technomancy/slamhound) is a tool that
 will automatically generate proper `ns` declarations from your
 existing code.
@@ -1225,6 +1308,7 @@ existing code.
   [core.logic](https://github.com/clojure/core.logic) to search for
   patterns of code for which there might exist a more idiomatic
   function or macro.
+-->
 
 # Contributing
 
@@ -1236,7 +1320,11 @@ community.
 Feel free to open tickets or send pull requests with improvements. Thanks in
 advance for your help!
 
+# ライセンス
+
+<!--
 # License
+-->
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)
 This work is licensed under a
