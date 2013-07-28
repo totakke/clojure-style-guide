@@ -725,8 +725,9 @@ You can generate a PDF or an HTML copy of this guide using
       :dunno)
     ```
 
-* Use short forms in `cond` and related.  If not possible give visual
-hints for the pairwise grouping with comments or empty lines.
+* `cond`などの中では短いフォームを用いる。それが無理なら、コメントや空白行を使用して、ペアグループを見えやすくする。
+<!-- * Use short forms in `cond` and related.  If not possible give visual -->
+<!-- hints for the pairwise grouping with comments or empty lines. -->
 
     ```Clojure
     ;; good
@@ -784,7 +785,8 @@ hints for the pairwise grouping with comments or empty lines.
 <!-- * Use `(pos? x)`, `(neg? x)` & `(zero? x)` instead of `(> x 0)`, -->
 <!-- `(< x 0)` & `(= x 0)`. -->
 
-* Use the sugared Java interop forms.
+* 理解しやすいJava呼び出しフォームを用いる。
+<!-- * Use the sugared Java interop forms. -->
 
     ```Clojure
     ;;; object creation
@@ -851,7 +853,8 @@ hints for the pairwise grouping with comments or empty lines.
     (def private-var ...) ; not private at all
     ```
 
-* Be careful regarding what exactly do you attach metadata to.
+* メタデータを何に付加するかについては、よく注意したほうが良い。
+<!-- * Be careful regarding what exactly do you attach metadata to. -->
 
     ```Clojure
     ;; we attach the metadata to the var referenced by `a`
@@ -1004,7 +1007,8 @@ hints for the pairwise grouping with comments or empty lines.
 
 * Avoid the use of lists for generic data storage (unless a list is
   exactly what you need).
-* Prefer the use of keywords for hash keys.
+* マップのキーにはキーワードを用いたほうが良い。
+<!-- * Prefer the use of keywords for hash keys. -->
 
     ```Clojure
     ;; good
@@ -1033,8 +1037,9 @@ hints for the pairwise grouping with comments or empty lines.
 * 可能ならコレクションの要素にインデックスでアクセスすることを避ける。
 <!-- * Avoid accessing collection members by index whenever possible. -->
 
-* Prefer the use of keywords as functions for retrieving values from
-  maps, where applicable.
+* 可能なら、マップの値を取得するにはキーワードを関数として用いるのが良い。
+<!-- * Prefer the use of keywords as functions for retrieving values from -->
+<!--   maps, where applicable. -->
 
     ```Clojure
     (def m {:name "Bruce" :age 30})
@@ -1089,7 +1094,8 @@ performance-critical code dealing heavily with primitive types.
 * Consider wrapping all I/O calls with the `io!` macro to avoid nasty
 surprises if you accidentally end up calling such code in a
 transaction.
-* Avoid the use of `ref-set` whenever possible.
+* 出来る限り`ref-set`は使用しない。
+<!-- * Avoid the use of `ref-set` whenever possible. -->
 
     ```Clojure
     (def r (ref 0))
@@ -1124,8 +1130,10 @@ as small as possible.
 ### Atoms
 -->
 
-* Avoid atom updates inside STM transactions.
-* Try to use `swap!` rather than `reset!`, where possible.
+* STMトランザクションの中でアトムを更新することを避ける。
+<!-- * Avoid atom updates inside STM transactions. -->
+* 可能なら、`reset!`よりも`swap!`を使うようにする。
+<!-- * Try to use `swap!` rather than `reset!`, where possible. -->
 
     ```Clojure
     (def a (atom 0))
@@ -1212,10 +1220,11 @@ as small as possible.
 * トップレベルのコメントには3つのセミコロンを用いる。
 <!-- * Write top-level comments with three semicolons. -->
 
-* Write comments on a particular fragment of code before that fragment
-and aligned with it, using two semicolons.
+* 特定のコード部分の直前にコメントを書くときは、コード部分とインデントを揃え、2つのセミコロンを用いる。
+<!-- * Write comments on a particular fragment of code before that fragment -->
+<!-- and aligned with it, using two semicolons. -->
 
-* マージンコメントには1つのセミコロンを用いる。
+* 行末コメントには1つのセミコロンを用いる。
 <!-- * Write margin comments with one semicolon. -->
 
 * セミコロンとテキストの間には最低1つのスペースを入れる。
@@ -1237,9 +1246,10 @@ and aligned with it, using two semicolons.
             frotz))
     ```
 
-* Comments longer than a word begin with a capital letter and use
-  punctuation. Separate sentences with
-  [one space](http://en.wikipedia.org/wiki/Sentence_spacing).
+* 2単語以上のコメントは大文字で始め、句読点を用いる。各文は[1つのスペース](http://en.wikipedia.org/wiki/Sentence_spacing)で分ける。
+<!-- * Comments longer than a word begin with a capital letter and use -->
+<!--   punctuation. Separate sentences with -->
+<!--   [one space](http://en.wikipedia.org/wiki/Sentence_spacing). -->
 * 無駄なコメントを避ける。
 <!-- * Avoid superfluous comments. -->
 
@@ -1264,10 +1274,15 @@ you need to comment out a particular form.
        delta)
     ```
 
-> Good code is like a good joke - it needs no explanation. <br/>
+> 良いコードというのは面白いジョークのようなものだ。説明する必要がない。<br/>
 > -- Russ Olsen
 
-* 悪いコードを説明するためにコメントを書くことを避ける。コードをリファクタリングして、コメントが不要なようにするべきだ。 ("Do, or do not. There is no try." --Yoda)
+<!--
+> Good code is like a good joke - it needs no explanation. <br/>
+> -- Russ Olsen
+-->
+
+* 悪いコードを説明するためにコメントを書くことを避ける。コードをリファクタリングして、コメントが不要なようにするべきだ。（「やるか、やらないか。あるのはそれだけじゃ」--Yoda）
 
 <!--
 * Avoid writing comments to explain bad code. Refactor the code to
