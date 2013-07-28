@@ -1,3 +1,17 @@
+このスタイルガイドは、[Bozhidar Batsov](https://twitter.com/bbatsov)氏による[bbatsov/clojure-style-guide](https://github.com/bbatsov/clojure-style-guide)の日本語訳フォークです。
+
+![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)
+本翻訳版のライセンスは[表示 3.0 非移植](http://creativecommons.org/licenses/by/3.0/deed.ja_JP)とします。
+原文のライセンスについてもご注意ください。
+
+意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。
+また、訳が間違っている可能性があります。暫時修正は行いますが、原文を優先するようにしてください。
+用語の翻訳には、[プログラミングClojure第2版](http://ssl.ohmsha.co.jp/cgi-bin/menu.cgi?ISBN=978-4-274-06913-0)を参考にしています。
+翻訳に対する意見や修正は、IssueやPull Requestを作成していただけると助かります。
+なお、規約自体に対する意見は原文リポジトリのほうにお願いします。
+
+----
+
 # Clojureスタイルガイド
 
 <!--
