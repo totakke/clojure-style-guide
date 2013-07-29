@@ -588,7 +588,8 @@ You can generate a PDF or an HTML copy of this guide using
          (* % 2))
     ```
 
-* Favor the use of `complement` versus the use of an anonymous function.
+* 無名関数よりも`complement`を用いたほうが良い。
+<!-- * Favor the use of `complement` versus the use of an anonymous function. -->
 
     ```Clojure
     ;; good
@@ -598,8 +599,12 @@ You can generate a PDF or an HTML copy of this guide using
     (filter #(not (some-pred? %)) coll)
     ```
 
+    この規約は、反対の述語が別の関数としてある場合は無視するべきだ。（例：`even?`と`odd?`）
+
+<!--
     This rule should obviously be ignored if the complementing predicate
     exists in the form of a separate function (e.g. `even?` and `odd?`).
+-->
 
 * コードをシンプルにするために`comp`の使用を考える。
 <!-- * Leverage `comp` when it would yield simpler code. -->
@@ -757,7 +762,8 @@ You can generate a PDF or an HTML copy of this guide using
                         'lines)))
     ```
 
-* Use a `set` as a predicate when appropriate.
+* `set`を述語として使うことができる。
+<!-- * Use a `set` as a predicate when appropriate. -->
 
     ```Clojure
     ;; good
@@ -825,8 +831,9 @@ You can generate a PDF or an HTML copy of this guide using
     (. some-object some-field)
     ```
 
-* Use the compact metadata notation for metadata that contains only
-  slots whose keys are keywords and whose value is boolean `true`.
+* キーがキーワード、値がブール値`true`のスロットしか持たないメタデータには、簡易メタデータ表記を使う。
+<!-- * Use the compact metadata notation for metadata that contains only -->
+<!--   slots whose keys are keywords and whose value is boolean `true`. -->
 
     ```Clojure
     ;; good
@@ -874,9 +881,14 @@ You can generate a PDF or an HTML copy of this guide using
 ## Naming
 -->
 
+> プログラミングで本当に難しいのは、キャッシュの無効化と命名の仕方だけだ。<br/>
+> -- Phil Karlton
+
+<!--
 > The only real difficulties in programming are cache invalidation and
 > naming things. <br/>
 > -- Phil Karlton
+-->
 
 * 名前空間は次の2つの名づけ方が好ましい。
     * `project.module`
@@ -942,8 +954,9 @@ You can generate a PDF or an HTML copy of this guide using
     (def ^:dynamic a 10)
     ```
 
-* Don't use a special notation for constants; everything is assumed a constant
-  unless specified otherwise.
+* 定数のために特別な表記をしない。特定のものを除いて、全ては定数である。
+<!-- * Don't use a special notation for constants; everything is assumed a constant -->
+<!--   unless specified otherwise. -->
 * Use `_` for destructuring targets and formal arguments names whose
   value will be ignored by the code at hand.
 
@@ -965,14 +978,14 @@ You can generate a PDF or an HTML copy of this guide using
 
 * `pred`や`coll`のような慣習名には`clojure.core`の例が参考になる。
     * 関数内では、
-        * `f`, `g`, `h` - function input
-        * `n` - integer input usually a size
-        * `index` - integer index
-        * `x`, `y` - numbers
-        * `s` - string input
-        * `coll` - a collection
+        * `f`, `g`, `h` - 関数入力
+        * `n` - サイズを示す整数値
+        * `index` - 整数のインデックス
+        * `x`, `y` - 数値
+        * `s` - 文字列入力
+        * `coll` - コレクション
         * `pred` - a predicate closure
-        * `& more` - variadic input
+        * `& more` - 可変長引数
     * マクロ内では、
         * `expr` - an expression
         * `body` - a macro body
@@ -1001,9 +1014,14 @@ You can generate a PDF or an HTML copy of this guide using
 ## Collections
 -->
 
+> 10種のデータ構造を処理できる機能を10個用意するより、1種のデータ構造を処理できる機能を100個用意した方がよい。<br/>
+> -- Alan J. Perlis
+
+<!--
 > It is better to have 100 functions operate on one data structure
 > than to have 10 functions operate on 10 data structures. <br/>
 > -- Alan J. Perlis
+-->
 
 * Avoid the use of lists for generic data storage (unless a list is
   exactly what you need).
@@ -1131,8 +1149,8 @@ as small as possible.
 -->
 
 * STMトランザクションの中でアトムを更新することを避ける。
-<!-- * Avoid atom updates inside STM transactions. -->
 * 可能なら、`reset!`よりも`swap!`を使うようにする。
+<!-- * Avoid atom updates inside STM transactions. -->
 <!-- * Try to use `swap!` rather than `reset!`, where possible. -->
 
     ```Clojure
@@ -1205,11 +1223,16 @@ as small as possible.
 ## Comments
 -->
 
+> 良いコードとは、それ自体が最良のドキュメントになっているものだ。コメントを付けようとしたとき、自分の胸に聞いてみるといい、「どうやってコードを改良して、このコメントを不要にできるだろうか？」ってね。より美しくするために、コードを改良してからドキュメント化するんだ。<br/>
+> -- Steve McConnell
+
+<!--
 > Good code is its own best documentation. As you're about to add a
 > comment, ask yourself, "How can I improve the code so that this
 > comment isn't needed?" Improve the code and then document it to make
 > it even clearer. <br/>
 > -- Steve McConnell
+-->
 
 * 出来る限り、コードを見れば何をしているのか分かるように努める。
 <!-- * Endeavor to make your code as self-documenting as possible. -->
@@ -1261,8 +1284,9 @@ as small as possible.
 * コメントは常に更新していなければならない。古いコメントはコメントがないことよりも害悪だ。
 <!-- * Keep existing comments up-to-date. An outdated comment is worse than no comment -->
 <!-- at all. -->
-* Prefer the use of the `#_` reader macro over a regular comment when
-you need to comment out a particular form.
+* 特定のフォームをコメントアウトする必要があるときは、通常のコメントではなく、`#_`リーダマクロを用いたほうが良い。
+<!-- * Prefer the use of the `#_` reader macro over a regular comment when -->
+<!-- you need to comment out a particular form. -->
 
     ```Clojure
     ;; good
@@ -1282,7 +1306,7 @@ you need to comment out a particular form.
 > -- Russ Olsen
 -->
 
-* 悪いコードを説明するためにコメントを書くことを避ける。コードをリファクタリングして、コメントが不要なようにするべきだ。（「やるか、やらないか。あるのはそれだけじゃ」--Yoda）
+* 悪いコードを説明するためにコメントを書くことを避ける。コードをリファクタリングして、コメントが不要なようにするべきだ。（「やるか、やらないだ。やってみるではない」--Yoda）
 
 <!--
 * Avoid writing comments to explain bad code. Refactor the code to
@@ -1295,14 +1319,18 @@ you need to comment out a particular form.
 ### Comment Annotations
 -->
 
-* Annotations should usually be written on the line immediately above
-  the relevant code.
-* The annotation keyword is followed by a colon and a space, then a note
-  describing the problem.
-* If multiple lines are required to describe the problem, subsequent
-  lines should be indented as much as the first one.
-* Tag the annotation with your initials and a date so its relevance can
-  be easily verified.
+* アノテーションは通常、当該コードの直前に書かれるべきだ。
+<!-- * Annotations should usually be written on the line immediately above -->
+<!--   the relevant code. -->
+* アノテーションキーワードの後にはコロンとスペースを入れ、その後で詳細を書く。
+<!-- * The annotation keyword is followed by a colon and a space, then a note -->
+<!--   describing the problem. -->
+* 詳細が複数行に渡る場合、2行目以降は1行目に合わせてインデントするべきだ。
+<!-- * If multiple lines are required to describe the problem, subsequent -->
+<!--   lines should be indented as much as the first one. -->
+* アノテーションには記述者のイニシャルと日付を入れる。そうすればその妥当性を容易に示せる。
+<!-- * Tag the annotation with your initials and a date so its relevance can -->
+<!--   be easily verified. -->
 
     ```Clojure
     (defn some-fun
@@ -1322,11 +1350,14 @@ you need to comment out a particular form.
       (sleep 100)) ; OPTIMIZE
     ```
 
-* Use `TODO` to note missing features or functionality that should be
-  added at a later date.
-* Use `FIXME` to note broken code that needs to be fixed.
-* Use `OPTIMIZE` to note slow or inefficient code that may cause
-  performance problems.
+* 後日追加されるべき機能には`TODO`を使う。
+<!-- * Use `TODO` to note missing features or functionality that should be -->
+<!--   added at a later date. -->
+* コードが壊れていて、修正の必要がある箇所には`FIXME`を使う。
+<!-- * Use `FIXME` to note broken code that needs to be fixed. -->
+* パフォーマンス問題の原因となりうる、遅かったり非効率なコードには`OPTIMIZE`を使う。
+<!-- * Use `OPTIMIZE` to note slow or inefficient code that may cause -->
+<!--   performance problems. -->
 * Use `HACK` to note "code smells" where questionable coding practices
   were used and should be refactored away.
 * Use `REVIEW` to note anything that should be looked at to confirm it
@@ -1368,6 +1399,7 @@ existing code.
   function or macro.
 -->
 
+<!--
 # Contributing
 
 Nothing written in this guide is set in stone. It's my desire to work
@@ -1378,15 +1410,12 @@ community.
 Feel free to open tickets or send pull requests with improvements. Thanks in
 advance for your help!
 
-# ライセンス
-
-<!--
 # License
--->
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)
 This work is licensed under a
 [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/deed.en_US)
+-->
 
 # Spread the Word
 
