@@ -18,15 +18,18 @@
 # The Clojure Style Guide
 -->
 
-> Role models are important. <br/>
+> 良い手本は大切だ。<br/>
 > -- Officer Alex J. Murphy / RoboCop
 
-このClojureスタイルガイドは、実際のClojureプログラマーが他のClojureプログラマーに保守されるコードを書くための、最善のルールを推奨するものだ。
-A style guide that reflects real-world usage gets used, and a
-style guide that holds to an ideal that has been rejected by the people it is
-supposed to help risks not getting used at all &ndash; no matter how good it is.
+<!--
+> Role models are important. <br/>
+> -- Officer Alex J. Murphy / RoboCop
+-->
 
-関連する規約ごとにいくつかのセクションに分かれて構成されている。規約には理論的根拠を付けるようにした（ただし、根拠が明らかな場合は省略している）。
+このClojureスタイルガイドは、実際のClojureプログラマーが他のClojureプログラマーに保守してもらえるコードを書くための、ベスト・プラクティスを勧めるものだ。
+実際の使われ方を反映したスタイルガイドは利用されるが、人々にそのリスクから拒否された理想的な規約を持つスタイルガイドは利用されない──たとえそれがどれほど良いものであっても。
+
+ガイドは関連する規約ごとにいくつかのセクションに分かれて構成されている。規約には理論的根拠を付けるようにした（ただし、根拠が明らかな場合は省略している）。
 
 これらの規約は、出し抜けに考えだされたものではない。これらの多くは、私のプロソフトウェアエンジニアとしての幅広い仕事や、Clojureコミュニティメンバーからのフィードバックと意見、そして、["Clojure Programming"](http://www.clojurebook.com/)や["The Joy of Clojure"](http://joyofclojure.com/)のような高い評価を受けている様々なリソースに基づいている。
 
@@ -63,18 +66,18 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## 目次
 
-* [ソースコードのレイアウトと構造](#source-code-layout--organization)
-* [文法](#syntax)
-* [命名規約](#naming)
-* [コレクション](#collections)
-* [状態](#mutation)
-* [文字列](#strings)
-* [例外](#exceptions)
-* [マクロ](#macros)
-* [コメント](#comments)
-    * [コメントアノテーション](#comment-annotations)
-* [Existential](#existential)
-* [ツール](#tooling)
+* [ソースコードのレイアウトと構造](#ソースコードのレイアウトと構造)
+* [文法](#文法)
+* [命名規約](#命名規約)
+* [コレクション](#コレクション)
+* [状態](#状態)
+* [文字列](#文字列)
+* [例外](#例外)
+* [マクロ](#マクロ)
+* [コメント](#コメント)
+    * [コメントアノテーション](#コメントアノテーション)
+* [実際のコードでは](#実際のコードでは)
+* [ツール](#ツール)
 
 <!--
 ## Table of Contents
@@ -93,16 +96,21 @@ You can generate a PDF or an HTML copy of this guide using
 * [Tooling](#tooling)
 -->
 
-## <a name="source-code-layout--organization">ソースコードのレイアウトと構造
+## ソースコードのレイアウトと構造
 
 <!--
 ## Source Code Layout & Organization
 -->
 
+> ほとんど全ての人は、自分のもの以外のあらゆるスタイルは汚くて読みにくい、と思っている。「自分のもの以外の」を削れば、それはおそらく正しい…<br/>
+> -- Jerry Coffin (インデントについて)
+
+<!--
 > Nearly everybody is convinced that every style but their own is
 > ugly and unreadable. Leave out the "but their own" and they're
 > probably right... <br/>
 > -- Jerry Coffin (on indentation)
+-->
 
 * 各インデントには2つの **スペース** を使う。タブは使わない。
 <!-- * Use two **spaces** per indentation level. No hard tabs. -->
@@ -147,7 +155,7 @@ You can generate a PDF or an HTML copy of this guide using
       :thing2 thing2})
     ```
 
-* `defn`において、ドキュメント文字列を持たない場合は、関数名と引数ベクターの間の改行を省略しても良い。
+* `defn`において、ドキュメント文字列を持たない場合は、関数名と引数ベクタの間の改行を省略しても良い。
 <!-- * Optionally omit the new line between the function name and argument -->
 <!--   vector for `defn` when there is no docstring. -->
 
@@ -166,7 +174,7 @@ You can generate a PDF or an HTML copy of this guide using
       [x] (bar x))
     ```
 
-* 関数本体が短い場合、引数ベクターと関数本体の間の改行は省略しても良い。
+* 関数本体が短い場合、引数ベクタと関数本体の間の改行は省略しても良い。
 <!-- * Optionally omit the new line between the argument vector and a short -->
 <!--   function body. -->
 
@@ -212,8 +220,8 @@ You can generate a PDF or an HTML copy of this guide using
       (bar))
     ```
 
-* Unixスタイルの行エンコーディングを使用する。（*BSD/Solaris/Linux/OSXユーザはデフォルトでカバーされているが、Windowsユーザは特に注意すること。）
-    * Gitを使っているなら、次の設定をしてもいいかもしれない。
+* Unixスタイルの行エンコーディングを使用する。（*BSD/Solaris/Linux/OSXユーザはデフォルトで問題ないが、Windowsユーザは特に注意すること。）
+    * Gitを使っているなら、次の設定を追加して、Windowsの行末コードを防ぐのもいい。
 <!-- * Use Unix-style line endings. (*BSD/Solaris/Linux/OSX users are -->
 <!--   covered by default, Windows users have to be extra careful.) -->
 <!--     * If you're using Git you might want to add the following -->
@@ -358,7 +366,7 @@ You can generate a PDF or an HTML copy of this guide using
 * 3つか4つを超えるパラメータを持つパラメータリストの使用を避ける。
 <!-- * Avoid parameter lists with more than three or four positional parameters. -->
 
-## <a name="syntax">文法
+## 文法
 
 <!--
 ## Syntax
@@ -791,7 +799,7 @@ You can generate a PDF or an HTML copy of this guide using
 <!-- * Use `(pos? x)`, `(neg? x)` & `(zero? x)` instead of `(> x 0)`, -->
 <!-- `(< x 0)` & `(= x 0)`. -->
 
-* 理解しやすいJava呼び出しフォームを用いる。
+* 糖衣されたJava呼び出しフォームを用いる。
 <!-- * Use the sugared Java interop forms. -->
 
     ```Clojure
@@ -875,7 +883,7 @@ You can generate a PDF or an HTML copy of this guide using
     (meta #'a) ;=> nil
     ```
 
-## <a name="naming">命名規約
+## 命名規約
 
 <!--
 ## Naming
@@ -955,8 +963,27 @@ You can generate a PDF or an HTML copy of this guide using
     ```
 
 * 定数のために特別な表記をしない。特定のものを除いて、全ては定数である。
-<!-- * Don't use a special notation for constants; everything is assumed a constant -->
-<!--   unless specified otherwise. -->
+* 分配束縛しても直後のコードで使われない変数名には`_`を使う。
+
+    ```Clojure
+    ;; good
+    (let [[a b _ c] [1 2 3 4]]
+      (println a b c))
+
+    (dotimes [_ 3]
+      (println "Hello!"))
+
+    ;; bad
+    (let [[a b c d] [1 2 3 4]]
+      (println a b d))
+
+    (dotimes [i 3]
+      (println "Hello!"))
+    ```
+
+<!--
+* Don't use a special notation for constants; everything is assumed a constant
+  unless specified otherwise.
 * Use `_` for destructuring targets and formal arguments names whose
   value will be ignored by the code at hand.
 
@@ -975,6 +1002,7 @@ You can generate a PDF or an HTML copy of this guide using
     (dotimes [i 3]
       (println "Hello!"))
     ```
+-->
 
 * `pred`や`coll`のような慣習名には`clojure.core`の例が参考になる。
     * 関数内では、
@@ -984,12 +1012,12 @@ You can generate a PDF or an HTML copy of this guide using
         * `x`, `y` - 数値
         * `s` - 文字列入力
         * `coll` - コレクション
-        * `pred` - a predicate closure
+        * `pred` - 述語クロージャ
         * `& more` - 可変長引数
     * マクロ内では、
-        * `expr` - an expression
-        * `body` - a macro body
-        * `binding` - a macro binding vector
+        * `expr` - 式
+        * `body` - マクロ本体
+        * `binding` - マクロの束縛ベクタ
 
 <!--
 * Follow `clojure.core`'s example for idiomatic names like `pred` and `coll`.
@@ -1008,7 +1036,7 @@ You can generate a PDF or an HTML copy of this guide using
         * `binding` - a macro binding vector
 -->
 
-## <a name="collections">コレクション
+## コレクション
 
 <!--
 ## Collections
@@ -1023,10 +1051,10 @@ You can generate a PDF or an HTML copy of this guide using
 > -- Alan J. Perlis
 -->
 
+* 汎用的なデータ置き場としてリストを使うことを避ける（リストが本当に必要な場合を除く）。
 * Avoid the use of lists for generic data storage (unless a list is
   exactly what you need).
 * マップのキーにはキーワードを用いたほうが良い。
-<!-- * Prefer the use of keywords for hash keys. -->
 
     ```Clojure
     ;; good
@@ -1036,9 +1064,24 @@ You can generate a PDF or an HTML copy of this guide using
     {"name" "Bruce" "age" 30}
     ```
 
-* Prefer the use of the literal collection syntax where
-  applicable. However, when defining sets, only use literal syntax
-  when the values are compile-time constants.
+<!--
+* Avoid the use of lists for generic data storage (unless a list is
+  exactly what you need).
+* Prefer the use of keywords for hash keys.
+
+    ```Clojure
+    ;; good
+    {:name "Bruce" :age 30}
+
+    ;; bad
+    {"name" "Bruce" "age" 30}
+    ```
+-->
+
+* 可能ならコレクションのリテラル文法を用いたほうが良い。ただし、セットを定義するときは、コンパイル時に定数である値についてのみリテラル文法を使用する。
+<!-- * Prefer the use of the literal collection syntax where -->
+<!--   applicable. However, when defining sets, only use literal syntax -->
+<!--   when the values are compile-time constants. -->
 
     ```Clojure
     ;; good
@@ -1072,7 +1115,7 @@ You can generate a PDF or an HTML copy of this guide using
     (m :name)
     ```
 
-* Leverage the fact that most collections are functions of their elements.
+* ほとんどのコレクションはその要素の関数であることを活用する。
 
     ```Clojure
     ;; good
@@ -1081,23 +1124,48 @@ You can generate a PDF or an HTML copy of this guide using
     ;; bad - too ugly to share
     ```
 
-* Leverage the fact that keywords can be used as functions of a collection.
+<!--
+* Leverage the fact that most collections are functions of their elements.
+
+    ```Clojure
+    ;; good
+    (filter #{\a \e \o \i \u} "this is a test")
+
+    ;; bad - too ugly to share
+    ```
+-->
+
+* キーワードはコレクションの関数として使えることを活用する。
 
     ```Clojure
     ((juxt :a :b) {:a "ala" :b "bala"})
     ```
 
+<!--
+* Leverage the fact that keywords can be used as functions of a collection.
+
+    ```Clojure
+    ((juxt :a :b) {:a "ala" :b "bala"})
+    ```
+-->
+
 * パフォーマンス問題がクリティカルとなる部分を除いて、一時的なコレクションの使用を避ける。
-<!-- * Avoid the use of transient collections, except for -->
-<!-- performance-critical portions of the code. -->
 
 * Javaのコレクションの使用を避ける。
-<!-- * Avoid the use of Java collections. -->
+
+* Java呼び出しや、プリミティブ型を多く使うパフォーマンスクリティカルな部分を除いて、Javaの配列の使用を避ける。
+
+<!--
+* Avoid the use of transient collections, except for
+performance-critical portions of the code.
+
+* Avoid the use of Java collections.
 
 * Avoid the use of Java arrays, except for interop scenarios and
 performance-critical code dealing heavily with primitive types.
+-->
 
-## <a name="mutation">状態
+## 状態
 
 <!--
 ## Mutation
@@ -1109,11 +1177,8 @@ performance-critical code dealing heavily with primitive types.
 ### Refs
 -->
 
-* Consider wrapping all I/O calls with the `io!` macro to avoid nasty
-surprises if you accidentally end up calling such code in a
-transaction.
+* トランザクションの中で思いがけずI/Oコールを呼んでしまったときの問題を回避するため、全てのI/Oコールを`io!`マクロでラップすることを考える。
 * 出来る限り`ref-set`は使用しない。
-<!-- * Avoid the use of `ref-set` whenever possible. -->
 
     ```Clojure
     (def r (ref 0))
@@ -1125,22 +1190,46 @@ transaction.
     (dosync (ref-set r 5))
     ```
 
+<!--
+* Consider wrapping all I/O calls with the `io!` macro to avoid nasty
+surprises if you accidentally end up calling such code in a
+transaction.
+* Avoid the use of `ref-set` whenever possible.
+
+    ```Clojure
+    (def r (ref 0))
+
+    ;; good
+    (dosync (alter r + 5))
+
+    ;; bad
+    (dosync (ref-set r 5))
+    ```
+-->
+
+* トランザクションのサイズ（包んでいる処理の量）を出来る限り小さく保つようにする。
+* 同一のrefとやり取りを行う、短期のトランザクションと長期のトランザクションを持つことを避ける。
+
+<!--
 * Try to keep the size of transactions (the amount of work encapsulated in them)
 as small as possible.
 * Avoid having both short- and long-running transactions interacting
   with the same Ref.
+-->
 
 ### エージェント
 
+* それがCPUバウンドで、かつI/Oや他スレッドをブロックしない処理のときだけ`send`を用いる。
+* それがスレッドをブロック、スリープさせたり、そうでなくても停滞させるかもしれない処理には`send-off`を用いる。
+
 <!--
 ### Agents
--->
 
 * Use `send` only for actions that are CPU bound and don't block on I/O
   or other threads.
 * Use `send-off` for actions that might block, sleep, or otherwise tie
   up the thread.
-
+-->
 
 ### アトム
 
@@ -1150,8 +1239,6 @@ as small as possible.
 
 * STMトランザクションの中でアトムを更新することを避ける。
 * 可能なら、`reset!`よりも`swap!`を使うようにする。
-<!-- * Avoid atom updates inside STM transactions. -->
-<!-- * Try to use `swap!` rather than `reset!`, where possible. -->
 
     ```Clojure
     (def a (atom 0))
@@ -1163,10 +1250,24 @@ as small as possible.
     (reset! a 5)
     ```
 
-## <a name="strings">文字列
+<!--
+* Avoid atom updates inside STM transactions.
+* Try to use `swap!` rather than `reset!`, where possible.
+
+    ```Clojure
+    (def a (atom 0))
+
+    ;; good
+    (swap! a + 5)
+
+    ;; not as good
+    (reset! a 5)
+    ```
+-->
+
+## 文字列
 
 * 文字列処理は、Java呼び出しや自分で書くよりも、`clojure.string`の関数を使うほうが好ましい。
-<!-- * Prefer string manipulation functions from `clojure.string` over Java interop or rolling your own. -->
 
     ```Clojure
     ;; good
@@ -1176,7 +1277,19 @@ as small as possible.
     (.toUpperCase "bruce")
     ```
 
-## <a name="exceptions">例外
+<!--
+* Prefer string manipulation functions from `clojure.string` over Java interop or rolling your own.
+
+    ```Clojure
+    ;; good
+    (clojure.string/upper-case "bruce")
+
+    ;; bad
+    (.toUpperCase "bruce")
+    ```
+-->
+
+## 例外
 
 * 既存の例外型を再利用する。慣用的なClojureコードでは、例外を投げるとき、基本的な例外型を用いている。
   （例： `java.lang.IllegalArgumentException`,
@@ -1193,7 +1306,7 @@ as small as possible.
 * Favor `with-open` over `finally`.
 -->
 
-## <a name="macros">マクロ
+## マクロ
 
 <!--
 ## Macros
@@ -1202,10 +1315,8 @@ as small as possible.
 * その処理が関数でできるならマクロを書かない。
 * まずマクロの使用例を作成し、その後でマクロを作る。
 * 複雑なマクロは、可能なら小さい関数に分割する。
-* A macro should usually just provide syntactic sugar and the core of
-  the macro should be a plain function. Doing so will improve
-  composability.
-* Prefer syntax-quoted forms over building lists manually.
+* マクロは通常、構文糖衣を提供するものであるべきで、そのコアは単純な関数であるべきだ。そうすることでより構造化されるだろう。
+* 自分でリストを組み立てるよりも構文クオートを使用するほうが好ましい。
 
 <!--
 * Don't write a macro if a function will do.
@@ -1217,7 +1328,7 @@ as small as possible.
 * Prefer syntax-quoted forms over building lists manually.
 -->
 
-## <a name="comments">コメント
+## コメント
 
 <!--
 ## Comments
@@ -1313,24 +1424,16 @@ as small as possible.
   make it self-explanatory. ("Do, or do not. There is no try." --Yoda)
 -->
 
-### <a name="comment-annotations">コメントアノテーション
+### コメントアノテーション
 
 <!--
 ### Comment Annotations
 -->
 
 * アノテーションは通常、当該コードの直前に書かれるべきだ。
-<!-- * Annotations should usually be written on the line immediately above -->
-<!--   the relevant code. -->
 * アノテーションキーワードの後にはコロンとスペースを入れ、その後で詳細を書く。
-<!-- * The annotation keyword is followed by a colon and a space, then a note -->
-<!--   describing the problem. -->
 * 詳細が複数行に渡る場合、2行目以降は1行目に合わせてインデントするべきだ。
-<!-- * If multiple lines are required to describe the problem, subsequent -->
-<!--   lines should be indented as much as the first one. -->
 * アノテーションには記述者のイニシャルと日付を入れる。そうすればその妥当性を容易に示せる。
-<!-- * Tag the annotation with your initials and a date so its relevance can -->
-<!--   be easily verified. -->
 
     ```Clojure
     (defn some-fun
@@ -1340,6 +1443,34 @@ as small as possible.
       (baz))
     ```
 
+<!--
+* Annotations should usually be written on the line immediately above
+  the relevant code.
+* The annotation keyword is followed by a colon and a space, then a note
+  describing the problem.
+* If multiple lines are required to describe the problem, subsequent
+  lines should be indented as much as the first one.
+* Tag the annotation with your initials and a date so its relevance can
+  be easily verified.
+
+    ```Clojure
+    (defn some-fun
+      []
+      ;; FIXME: This has crashed occasionally since v1.2.3. It may
+      ;;        be related to the BarBazUtil upgrade. (xz 13-1-31)
+      (baz))
+    ```
+-->
+
+* ドキュメント化が不必要なほどに問題が明らかな箇所では、当該行の末尾に説明なしでアノテーションを付けても良い。この使用法は例外的であるべきで、規約ではない。
+
+    ```Clojure
+    (defn bar
+      []
+      (sleep 100)) ; OPTIMIZE
+    ```
+
+<!--
 * In cases where the problem is so obvious that any documentation would
   be redundant, annotations may be left at the end of the offending line
   with no note. This usage should be the exception and not the rule.
@@ -1349,15 +1480,21 @@ as small as possible.
       []
       (sleep 100)) ; OPTIMIZE
     ```
+-->
 
 * 後日追加されるべき機能には`TODO`を使う。
-<!-- * Use `TODO` to note missing features or functionality that should be -->
-<!--   added at a later date. -->
 * コードが壊れていて、修正の必要がある箇所には`FIXME`を使う。
-<!-- * Use `FIXME` to note broken code that needs to be fixed. -->
 * パフォーマンス問題の原因となりうる、遅かったり非効率なコードには`OPTIMIZE`を使う。
-<!-- * Use `OPTIMIZE` to note slow or inefficient code that may cause -->
-<!--   performance problems. -->
+* 疑わしいコーディングの仕方がされており、リファクタリングすべき「コード・スメル」には`HACK`を用いる。
+* 意図するように動くかどうか確認すべき箇所には`REVIEW`を使う。例：`REVIEW: Are we sure this is how the client does X currently?`
+* そのほうが適切だと思えば、その他独自のアノテーションキーワードを用いる。ただし、プロジェクトの`README`などに忘れずにドキュメント化しておく。
+
+<!--
+* Use `TODO` to note missing features or functionality that should be
+  added at a later date.
+* Use `FIXME` to note broken code that needs to be fixed.
+* Use `OPTIMIZE` to note slow or inefficient code that may cause
+  performance problems.
 * Use `HACK` to note "code smells" where questionable coding practices
   were used and should be refactored away.
 * Use `REVIEW` to note anything that should be looked at to confirm it
@@ -1365,14 +1502,21 @@ as small as possible.
   client does X currently?`
 * Use other custom annotation keywords if it feels appropriate, but be
   sure to document them in your project's `README` or similar.
+-->
 
-## Existential
+## 実際のコードでは
 
+* 関数型的にコードを書き、状態を持つことを避けるのが理にかなっている。
+* 一貫させる。理想的には、このガイドの通りにする。
+* 常識的に考える。
+
+<!--
 * Code in a functional way, avoiding mutation when that makes sense.
 * Be consistent. In an ideal world, be consistent with these guidelines.
 * Use common sense.
+-->
 
-## <a name="tooling">ツール
+## ツール
 
 <!--
 ## Tooling
@@ -1417,13 +1561,18 @@ This work is licensed under a
 [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/deed.en_US)
 -->
 
-# Spread the Word
+# 広めてください
 
+コミュニティドリブンのスタイルガイドは、その存在を知らないコミュニティではあまり役に立ちません。どうか、このガイドについてツイートをして、あなたの友達や同僚と共有してください。頂いたあらゆるコメントや提案、意見がほんの少しずつ、このガイドを形作っていくのです。みんなで最高のスタイルガイドを作りましょう。
+
+
+<!--
 A community-driven style guide is of little use to a community that
 doesn't know about its existence. Tweet about the guide, share it with
 your friends and colleagues. Every comment, suggestion or opinion we
 get makes the guide just a little bit better. And we want to have the
 best possible guide, don't we?
+-->
 
 Cheers,<br/>
 [Bozhidar](https://twitter.com/bbatsov)
