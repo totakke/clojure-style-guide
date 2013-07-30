@@ -1,14 +1,8 @@
 このスタイルガイドは、[Bozhidar Batsov](https://twitter.com/bbatsov)氏による[bbatsov/clojure-style-guide](https://github.com/bbatsov/clojure-style-guide)の日本語訳フォークです。
 
-![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)
-本翻訳版のライセンスは[表示 3.0 非移植](http://creativecommons.org/licenses/by/3.0/deed.ja_JP)とします。
-原文のライセンスについてもご注意ください。
+![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)本翻訳版のライセンスは[クリエイティブ・コモンズ 表示 3.0 非移植 ライセンス](http://creativecommons.org/licenses/by/3.0/deed.ja_JP)とします。原著作者はBozhidar Batsov氏です。原文のライセンスについてもご注意ください。
 
-意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。
-また、訳が間違っている可能性があります。暫時修正は行いますが、原文を優先するようにしてください。
-用語の翻訳には、[プログラミングClojure第2版](http://ssl.ohmsha.co.jp/cgi-bin/menu.cgi?ISBN=978-4-274-06913-0)を参考にしています。
-翻訳に対する意見や修正は、IssueやPull Requestを作成していただけると助かります。
-なお、規約自体に対する意見は原文リポジトリのほうにお願いします。
+意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。暫時修正は行いますが、原文を優先するようにしてください。用語の翻訳には、[プログラミングClojure第2版](http://ssl.ohmsha.co.jp/cgi-bin/menu.cgi?ISBN=978-4-274-06913-0)を参考にしています。翻訳に対する意見や修正は、IssueやPull Requestを作成していただけると助かります。なお、規約自体に対する意見は原文リポジトリのほうにお願いします。
 
 ----
 
@@ -67,7 +61,7 @@ You can generate a PDF or an HTML copy of this guide using
 ## 目次
 
 * [ソースコードのレイアウトと構造](#ソースコードのレイアウトと構造)
-* [文法](#文法)
+* [構文](#構文)
 * [命名規約](#命名規約)
 * [コレクション](#コレクション)
 * [状態](#状態)
@@ -102,7 +96,7 @@ You can generate a PDF or an HTML copy of this guide using
 ## Source Code Layout & Organization
 -->
 
-> ほとんど全ての人は、自分のもの以外のあらゆるスタイルは汚くて読みにくい、と思っている。「自分のもの以外の」を削れば、それはおそらく正しい…<br/>
+> ほとんど全ての人は、自分のスタイル以外のあらゆるスタイルは汚くて読みにくい、と思っている。「自分のスタイル以外の」を削れば、それはおそらく正しい…<br/>
 > -- Jerry Coffin (インデントについて)
 
 <!--
@@ -366,7 +360,7 @@ You can generate a PDF or an HTML copy of this guide using
 * 3つか4つを超えるパラメータを持つパラメータリストの使用を避ける。
 <!-- * Avoid parameter lists with more than three or four positional parameters. -->
 
-## 文法
+## 構文
 
 <!--
 ## Syntax
@@ -1052,8 +1046,6 @@ You can generate a PDF or an HTML copy of this guide using
 -->
 
 * 汎用的なデータ置き場としてリストを使うことを避ける（リストが本当に必要な場合を除く）。
-* Avoid the use of lists for generic data storage (unless a list is
-  exactly what you need).
 * マップのキーにはキーワードを用いたほうが良い。
 
     ```Clojure
@@ -1078,7 +1070,7 @@ You can generate a PDF or an HTML copy of this guide using
     ```
 -->
 
-* 可能ならコレクションのリテラル文法を用いたほうが良い。ただし、セットを定義するときは、コンパイル時に定数である値についてのみリテラル文法を使用する。
+* 可能ならコレクションのリテラル構文を用いたほうが良い。ただし、セットを定義するときは、コンパイル時に定数である値についてのみリテラル構文を使用する。
 <!-- * Prefer the use of the literal collection syntax where -->
 <!--   applicable. However, when defining sets, only use literal syntax -->
 <!--   when the values are compile-time constants. -->
@@ -1314,8 +1306,8 @@ as small as possible.
 
 * その処理が関数でできるならマクロを書かない。
 * まずマクロの使用例を作成し、その後でマクロを作る。
-* 複雑なマクロは、可能なら小さい関数に分割する。
-* マクロは通常、構文糖衣を提供するものであるべきで、そのコアは単純な関数であるべきだ。そうすることでより構造化されるだろう。
+* 複雑なマクロは、可能なら小さい機能に分割する。
+* マクロは通常、構文糖衣を提供するものであるべきで、そのコアは単純な機能であるべきだ。そうすることでより構造化されるだろう。
 * 自分でリストを組み立てるよりも構文クオートを使用するほうが好ましい。
 
 <!--
@@ -1384,7 +1376,7 @@ as small as possible.
 <!-- * Comments longer than a word begin with a capital letter and use -->
 <!--   punctuation. Separate sentences with -->
 <!--   [one space](http://en.wikipedia.org/wiki/Sentence_spacing). -->
-* 無駄なコメントを避ける。
+* 無意味なコメントを避ける。
 <!-- * Avoid superfluous comments. -->
 
     ```Clojure
@@ -1392,10 +1384,10 @@ as small as possible.
     (inc counter) ; increments counter by one
     ```
 
-* コメントは常に更新していなければならない。古いコメントはコメントがないことよりも害悪だ。
+* コメントは常に更新していなければならない。古いコメントは、コメントがないことよりも害悪だ。
 <!-- * Keep existing comments up-to-date. An outdated comment is worse than no comment -->
 <!-- at all. -->
-* 特定のフォームをコメントアウトする必要があるときは、通常のコメントではなく、`#_`リーダマクロを用いたほうが良い。
+* 特定のフォームをコメントアウトする必要があるときは、通常のコメントではなく`#_`リーダマクロを用いたほうが良い。
 <!-- * Prefer the use of the `#_` reader macro over a regular comment when -->
 <!-- you need to comment out a particular form. -->
 
