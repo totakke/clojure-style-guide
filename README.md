@@ -830,7 +830,7 @@ You can generate a PDF or an HTML copy of this guide using
     (.someField some-object)
 
     ;; bad
-    (. some-object some-field)
+    (. some-object someField)
     ```
 
 * キーがキーワード、値がブール値`true`のスロットしか持たないメタデータには、簡易メタデータ表記を使う。
