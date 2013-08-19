@@ -243,6 +243,18 @@
                                      LinkedBlockingQueue)))
     ```
 
+* nsマクロでは、`:use`よりも`:require :refer :all`を用いるほうが良い。
+
+    ```Clojure
+    ;; good
+    (ns examlpes.ns
+      (:require [clojure.zip :refer :all]))
+
+    ;; bad
+    (ns examlpes.ns
+      (:use [clojure.zip]))
+    ```
+
 * 単一セグメントの名前空間を使わない。
 
     ```Clojure
