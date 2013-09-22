@@ -45,11 +45,11 @@
 * 各インデントには2つの **スペース** を使う。タブは使わない。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (when something
       (something-else))
 
-    ;; bad - four spaces
+    ;; 悪い - 4つのスペース
     (when something
         (something-else))
     ```
@@ -57,11 +57,11 @@
 * 関数の引数は左揃えにする。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (filter even?
             (range 1 10))
 
-    ;; bad
+    ;; 悪い
     (filter even?
       (range 1 10))
     ```
@@ -69,13 +69,13 @@
 * `let`の束縛とマップのキーワードを揃える。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (let [thing1 "some stuff"
           thing2 "other stuff"]
       {:thing1 thing1
        :thing2 thing2})
 
-    ;; bad
+    ;; 悪い
     (let [thing1 "some stuff"
       thing2 "other stuff"]
       {:thing1 thing1
@@ -85,16 +85,16 @@
 * `defn`において、ドキュメント文字列を持たない場合は、関数名と引数ベクタの間の改行を省略しても良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defn foo
       [x]
       (bar x))
 
-    ;; good
+    ;; 良い
     (defn foo [x]
       (bar x))
 
-    ;; bad
+    ;; 悪い
     (defn foo
       [x] (bar x))
     ```
@@ -102,14 +102,14 @@
 * 関数本体が短い場合、引数ベクタと関数本体の間の改行は省略しても良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defn foo [x]
       (bar x))
 
-    ;; good for a small function body
+    ;; 関数本体が短い場合は良い
     (defn foo [x] (bar x))
 
-    ;; good for multi-arity functions
+    ;; マルチアリティ関数には良い
     (defn foo
       ([x] (bar x))
       ([x y]
@@ -117,7 +117,7 @@
           (bar x)
           (baz x))))
 
-    ;; bad
+    ;; 悪い
     (defn foo
       [x] (if (predicate? x)
             (bar x)
@@ -127,14 +127,14 @@
 * 複数行に渡るドキュメント文字列はインデントする。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defn foo
       "Hello there. This is
       a multi-line docstring."
       []
       (bar))
 
-    ;; bad
+    ;; 悪い
     (defn foo
       "Hello there. This is
     a multi-line docstring."
@@ -153,10 +153,10 @@
 逆に、開き括弧とそれに続く文字、閉じ括弧と直前の文字の間にはスペースを入れない。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (foo (bar baz) quux)
 
-    ;; bad
+    ;; 悪い
     (foo(bar baz)quux)
     (foo ( bar baz ) quux)
     ```
@@ -164,11 +164,11 @@
 * シーケンシャルコレクションのリテラルの要素の間にコンマを使わない。
 
     ```Clojure
-    ;; good
+    ;; 良い
     [1 2 3]
     (1 2 3)
 
-    ;; bad
+    ;; 悪い
     [1, 2, 3]
     (1, 2, 3)
     ```
@@ -176,25 +176,25 @@
 * コンマや改行を使い、マップリテラルの可読性を向上させることを検討する。
 
     ```Clojure
-    ;; good
+    ;; 良い
     {:name "Bruce Wayne" :alter-ego "Batman"}
 
-    ;; good and arguably a bit more readable
+    ;; 良い、より読みやすい
     {:name "Bruce Wayne"
      :alter-ego "Batman"}
 
-    ;; good and arguably more compact
+    ;; 良い、よりコンパクト
     {:name "Bruce Wayne", :alter-ego "Batman"}
     ```
 
 * 後ろ側に連続する括弧は同じ行に含める。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (when something
       (something-else))
 
-    ;; bad
+    ;; 悪い
     (when something
       (something-else)
     )
@@ -203,12 +203,12 @@
 * トップレベルのフォームの間には空白行を挟む。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (def x ...)
 
     (defn foo ...)
 
-    ;; bad
+    ;; 悪い
     (def x ...)
     (defn foo ...)
     ```
@@ -216,7 +216,7 @@
     例外として、関連する`def`はまとめてしまっても良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (def min-rows 10)
     (def max-rows 20)
     (def min-cols 15)
@@ -246,11 +246,11 @@
 * nsマクロでは、`:use`よりも`:require :refer :all`を用いるほうが良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (ns examlpes.ns
       (:require [clojure.zip :refer :all]))
 
-    ;; bad
+    ;; 悪い
     (ns examlpes.ns
       (:use [clojure.zip]))
     ```
@@ -258,10 +258,10 @@
 * 単一セグメントの名前空間を使わない。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (ns example.ns)
 
-    ;; bad
+    ;; 悪い
     (ns example)
     ```
 
@@ -280,12 +280,12 @@
 * 関数本体内では、コンディションマップによる入力値、出力値のチェックがより良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defn foo [x]
       {:pre [(pos? x)]}
       (bar x))
 
-    ;; bad
+    ;; 悪い
     (defn foo [x]
       (if (pos? x)
         (bar x)
@@ -295,7 +295,7 @@
 * 関数内でvarを定義しない。
 
     ```Clojure
-    ;; very bad
+    ;; 非常に悪い
     (defn foo []
       (def x 5)
       ...)
@@ -304,7 +304,7 @@
 * ローカル束縛によって`clojure.core`の名前を隠さない。
 
     ```Clojure
-    ;; bad - you're forced to used clojure.core/map fully qualified inside
+    ;; 悪い - you're forced to used clojure.core/map fully qualified inside
     (defn foo [map]
       ...)
     ```
@@ -312,13 +312,13 @@
 * シーケンスが空かどうかをチェックするには`seq`を使う（このテクニックはしばしば *nil punning* と呼ばれる）。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defn print-seq [s]
       (when (seq s)
         (prn (first s))
         (recur (rest s))))
 
-    ;; bad
+    ;; 悪い
     (defn print-seq [s]
       (when-not (empty? s)
         (prn (first s))
@@ -328,12 +328,12 @@
 * `(if ... (do ...)`の代わりに`when`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (when pred
       (foo)
       (bar))
 
-    ;; bad
+    ;; 悪い
     (if pred
       (do
         (foo)
@@ -342,12 +342,12 @@
 * `let` + `if`の代わりに`if-let`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (if-let [result (foo x)]
       (something-with result)
       (something-else))
 
-    ;; bad
+    ;; 悪い
     (let [result (foo x)]
       (if result
         (something-with result)
@@ -357,12 +357,12 @@
 * `let` + `when`の代わりに`when-let`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (when-let [result (foo x)]
       (do-something-with result)
       (do-something-more-with result))
 
-    ;; bad
+    ;; 悪い
     (let [result (foo x)]
       (when result
         (do-something-with result)
@@ -372,11 +372,11 @@
 * `(if (not ...) ...)`の代わりに`if-not`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (if-not (pred)
       (foo))
 
-    ;; bad
+    ;; 悪い
     (if (not pred)
       (foo))
     ```
@@ -384,12 +384,12 @@
 * `(when (not ...) ...)`の代わりに`when-not`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (when-not pred
       (foo)
       (bar))
 
-    ;; bad
+    ;; 悪い
     (when (not pred)
       (foo)
       (bar))
@@ -398,12 +398,12 @@
 * `(if-not ... (do ...)`の代わりに`when-not`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (when-not pred
       (foo)
       (bar))
 
-    ;; bad
+    ;; 悪い
     (if-not pred
       (do
         (foo)
@@ -413,62 +413,62 @@
 * `(not (= ...))`の代わりに`not=`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (not= foo bar)
 
-    ;; bad
+    ;; 悪い
     (not (= foo bar))
     ```
 
 * 比較を行うときは、Clojure関数の`<`や`>`などは可変長引数を許していることを覚えておこう。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (< 5 x 10)
 
-    ;; bad
+    ;; 悪い
     (and (> x 5) (< x 10))
     ```
 
 * ただ1つのパラメータを持つ関数リテラルでは、`%1`よりも`%`のほうが好ましい。
 
     ```Clojure
-    ;; good
+    ;; 良い
     #(Math/round %)
 
-    ;; bad
+    ;; 悪い
     #(Math/round %1)
     ```
 
 * 複数のパラメータを持つ関数リテラルでは、`%`よりも`%1`のほうが好ましい。
 
     ```Clojure
-    ;; good
+    ;; 良い
     #(Math/pow %1 %2)
 
-    ;; bad
+    ;; 悪い
     #(Math/pow % %2)
     ```
 
 * 必要ないなら無名関数でラップしない。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (filter even? (range 1 10))
 
-    ;; bad
+    ;; 悪い
     (filter #(even? %) (range 1 10))
     ```
 
 * 関数本体が2つ以上のフォームを含む場合は、関数リテラルを使用しない。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (fn [x]
       (println x)
       (* x 2))
 
-    ;; bad (you need an explicit do form)
+    ;; 悪い (明確なdoフォームが必要だ)
     #(do (println %)
          (* % 2))
     ```
@@ -476,10 +476,10 @@
 * 無名関数よりも`complement`を用いたほうが良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (filter (complement some-pred?) coll)
 
-    ;; bad
+    ;; 悪い
     (filter #(not (some-pred? %)) coll)
     ```
 
@@ -488,44 +488,44 @@
 * コードをシンプルにするために`comp`の使用を考える。
 
     ```Clojure
-    ;; Assuming `(:require [clojure.string :as str])`...
+    ;; `(:require [clojure.string :as str])`を仮定して...
 
-    ;; good
+    ;; 良い
     (map #(str/capitalize (str/trim %)) ["top " " test "])
 
-    ;; better
+    ;; より良い
     (map (comp str/capitalize str/trim) ["top " " test "])
     ```
 
 * コードをシンプルにするために`partial`の使用を考える。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (map #(+ 5 %) (range 1 10))
 
-    ;; (arguably) better
+    ;; (きっと) より良い
     (map (partial + 5) (range 1 10))
     ```
 
 * 深いネストよりもスレッディングマクロ`->` (thread-first)と`->>` (thread-last)の使用が好ましい。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (-> [1 2 3]
         reverse
         (conj 4)
         prn)
 
-    ;; not as good
+    ;; あまり良くない
     (prn (conj (reverse [1 2 3])
                4))
 
-    ;; good
+    ;; 良い
     (->> (range 1 10)
          (filter even?)
          (map (partial * 2)))
 
-    ;; not as good
+    ;; あまり良くない
     (map (partial * 2)
          (filter even? (range 1 10)))
     ```
@@ -533,23 +533,23 @@
 * Java呼び出しの際のチェーンメソッドコールには、`->`よりも`..`が好ましい。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (-> (System/getProperties) (.get "os.name"))
 
-    ;; better
+    ;; より良い
     (.. System getProperties (get "os.name"))
     ```
 
 * `cond`や`condp`で残り全ての条件をキャッチするときは`:else`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (cond
       (< n 0) "negative"
       (> n 0) "positive"
       :else "zero"))
 
-    ;; bad
+    ;; 悪い
     (cond
       (< n 0) "negative"
       (> n 0) "positive"
@@ -559,14 +559,14 @@
 * 述語と式が変わらない場合、`cond`よりも`condp`のほうが良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (cond
       (= x 10) :ten
       (= x 20) :twenty
       (= x 30) :forty
       :else :dunno)
 
-    ;; much better
+    ;; より良い
     (condp = x
       10 :ten
       20 :twenty
@@ -577,21 +577,21 @@
 * テスト式がコンパイル時に固定の場合、`cond`や`condp`の代わりに`case`を使うのが良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (cond
       (= x 10) :ten
       (= x 20) :twenty
       (= x 30) :forty
       :else :dunno)
 
-    ;; better
+    ;; より良い
     (condp = x
       10 :ten
       20 :twenty
       30 :forty
       :dunno)
 
-    ;; best
+    ;; 最も良い
     (case x
       10 :ten
       20 :twenty
@@ -602,13 +602,13 @@
 * `cond`などの中では短いフォームを用いる。それが無理なら、コメントや空白行を使用して、ペアグループを見えやすくする。
 
     ```Clojure
-    ;; good
+    ;; 良い
 	(cond
 	  (test1) (action1)
 	  (test2) (action2)
 	  :else   (default-action))
 
-	;; ok-ish
+	;; まあ良い
 	(cond
 	;; test case 1
 	(test1)
@@ -632,16 +632,16 @@
 * `set`を述語として使うことができる。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (remove #{0} [0 1 2 3 4 5])
 
-    ;; bad
+    ;; 悪い
     (remove #(= % 0) [0 1 2 3 4 5])
 
-    ;; good
+    ;; 良い
     (count (filter #{\a \e \i \o \u} "mary had a little lamb"))
 
-    ;; bad
+    ;; 悪い
     (count (filter #(or (= % \a)
                         (= % \e)
                         (= % \i)
@@ -657,66 +657,66 @@
 * 糖衣されたJava呼び出しフォームを用いる。
 
     ```Clojure
-    ;;; object creation
-    ;; good
+    ;;; オブジェクト生成
+    ;; 良い
     (java.util.ArrayList. 100)
 
-    ;; bad
+    ;; 悪い
     (new java.util.ArrayList 100)
 
-    ;;; static method invocation
-    ;; good
+    ;;; 静的メソッドの呼び出し
+    ;; 良い
     (Math/pow 2 10)
 
-    ;; bad
+    ;; 悪い
     (. Math pow 2 10)
 
-    ;;; instance method invocation
-    ;; good
+    ;;; インスタンスメソッドの呼び出し
+    ;; 良い
     (.substring "hello" 1 3)
 
-    ;; bad
+    ;; 悪い
     (. "hello" substring 1 3)
 
-    ;;; static field access
-    ;; good
+    ;;; 静的フィールドへのアクセス
+    ;; 良い
     Integer/MAX_VALUE
 
-    ;; bad
+    ;; 悪い
     (. Integer MAX_VALUE)
 
-    ;;; instance field access
-    ;; good
+    ;;; インスタンスフィールドへのアクセス
+    ;; 良い
     (.someField some-object)
 
-    ;; bad
+    ;; 悪い
     (. some-object someField)
     ```
 
 * キーがキーワード、値がブール値`true`のスロットしか持たないメタデータには、簡易メタデータ表記を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (def ^:private a 5)
 
-    ;; bad
+    ;; 悪い
     (def ^{:private true} a 5)
     ```
 
 * コード中のプライベート部分には印を付ける。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defn- private-fun [] ...)
 
     (def ^:private private-var ...)
 
     ;; bad
-    (defn private-fun [] ...) ; not private at all
+    (defn private-fun [] ...) ; 全くプライベートでない
 
-    (defn ^:private private-fun [] ...) ; overly verbose
+    (defn ^:private private-fun [] ...) ; 冗長な記述だ
 
-    (def private-var ...) ; not private at all
+    (def private-var ...) ; 全くプライベートでない
     ```
 
 * メタデータを何に付加するかについては、よく注意したほうが良い。
