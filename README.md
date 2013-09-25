@@ -252,7 +252,7 @@
 
     ;; bad
     (ns examples.ns
-      (:use [clojure.zip]))
+      (:use clojure.zip))
     ```
 
 * 単一セグメントの名前空間を使わない。
