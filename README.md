@@ -745,11 +745,11 @@
 * 関数名や変数名には`lisp-case`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (def some-var ...)
     (defn some-fun ...)
 
-    ;; bad
+    ;; 悪い
     (def someVar ...)
     (defn somefun ...)
     (def some_fun ...)
@@ -759,32 +759,32 @@
 * 述語（ブール値を返す関数）の名前はクエスチョンマーク（?）で終わるべきだ。（例：`even?`）
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defn palindrome? ...)
 
-    ;; bad
-    (defn palindrome-p ...) ; Common Lisp style
-    (defn is-palindrome ...) ; Java style
+    ;; 悪い
+    (defn palindrome-p ...) ; Common Lispスタイル
+    (defn is-palindrome ...) ; Javaスタイル
     ```
 
 * STMトランザクションの中で安全でない関数・マクロの名前はエクスクラメーションマーク（!）で終わるべきだ。（例：`reset!`）
 * 変換のための関数名には`to`ではなく`->`を用いる。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defn f->c ...)
 
-    ;; not so good
+    ;; あまり良くない
     (defn f-to-c ...)
     ```
 
 * 再束縛を想定しているものには`*earmuffs*`を使う（つまりdynamicなものだ）。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (def ^:dynamic *a* 10)
 
-    ;; bad
+    ;; 悪い
     (def ^:dynamic a 10)
     ```
 
@@ -792,14 +792,14 @@
 * 分配束縛しても直後のコードで使われない変数名には`_`を使う。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (let [[a b _ c] [1 2 3 4]]
       (println a b c))
 
     (dotimes [_ 3]
       (println "Hello!"))
 
-    ;; bad
+    ;; 悪い
     (let [[a b c d] [1 2 3 4]]
       (println a b d))
 
@@ -831,25 +831,25 @@
 * マップのキーにはキーワードを用いたほうが良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     {:name "Bruce" :age 30}
 
-    ;; bad
+    ;; 悪い
     {"name" "Bruce" "age" 30}
     ```
 
-* 可能なら、コレクションのリテラル構文を用いたほうが良い。ただし、セットを定義するときは、コンパイル時に定数である値についてのみリテラル構文を使用する。
+* 可能なら、コレクションのリテラル構文を用いたほうが良い。ただしセットを定義するときは、コンパイル時に定数である値についてのみリテラル構文を使用する。
 
     ```Clojure
-    ;; good
+    ;; 良い
     [1 2 3]
     #{1 2 3}
-    (hash-set (func1) (func2)) ; values determined at runtime
+    (hash-set (func1) (func2)) ; 実行時に決定する値
 
-    ;; bad
+    ;; 悪い
     (vector 1 2 3)
     (hash-set 1 2 3)
-    #{(func1) (func2)} ; will throw runtime exception if (func1) = (func2)
+    #{(func1) (func2)} ; もし (func1) = (func2) だったら実行時例外が投げられる
     ```
 
 * 可能なら、コレクションの要素にインデックスでアクセスすることを避ける。
@@ -859,23 +859,23 @@
     ```Clojure
     (def m {:name "Bruce" :age 30})
 
-    ;; good
+    ;; 良い
     (:name m)
 
-    ;; more verbose than necessary
+    ;; 必要以上の記述だ
     (get m :name)
 
-    ;; bad - susceptible to NullPointerException
+    ;; 悪い - NullPointerExceptionが発生する可能性が高い
     (m :name)
     ```
 
 * ほとんどのコレクションはその要素の関数であることを活用する。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (filter #{\a \e \o \i \u} "this is a test")
 
-    ;; bad - too ugly to share
+    ;; 悪い - 汚すぎて書けない
     ```
 
 * キーワードはコレクションの関数として使えることを活用する。
@@ -900,10 +900,10 @@
     ```Clojure
     (def r (ref 0))
 
-    ;; good
+    ;; 良い
     (dosync (alter r + 5))
 
-    ;; bad
+    ;; 悪い
     (dosync (ref-set r 5))
     ```
 
@@ -923,10 +923,10 @@
     ```Clojure
     (def a (atom 0))
 
-    ;; good
+    ;; 良い
     (swap! a + 5)
 
-    ;; not as good
+    ;; あまり良くない
     (reset! a 5)
     ```
 
@@ -935,10 +935,10 @@
 * 文字列処理は、Java呼び出しや独自実装よりも、`clojure.string`の関数を使うほうが好ましい。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (clojure.string/upper-case "bruce")
 
-    ;; bad
+    ;; 悪い
     (.toUpperCase "bruce")
     ```
 
@@ -1002,10 +1002,10 @@
 * 特定のフォームをコメントアウトする必要があるときは、通常のコメントではなく`#_`リーダマクロを用いたほうが良い。
 
     ```Clojure
-    ;; good
+    ;; 良い
     (+ foo #_(bar x) delta)
 
-    ;; bad
+    ;; 悪い
     (+ foo
        ;; (bar x)
        delta)
