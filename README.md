@@ -711,7 +711,7 @@
 
     (def ^:private private-var ...)
 
-    ;; bad
+    ;; 悪い
     (defn private-fun [] ...) ; 全くプライベートでない
 
     (defn ^:private private-fun [] ...) ; 冗長な記述だ
