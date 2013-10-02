@@ -304,7 +304,7 @@
 * ローカル束縛によって`clojure.core`の名前を隠さない。
 
     ```Clojure
-    ;; 悪い - you're forced to used clojure.core/map fully qualified inside
+    ;; 悪い - 関数内では完全修飾したclojure.core/mapを使わなければいけなくなる
     (defn foo [map]
       ...)
     ```
@@ -468,7 +468,7 @@
       (println x)
       (* x 2))
 
-    ;; 悪い (明確なdoフォームが必要だ)
+    ;; 悪い (doフォームを明示的に使わなければならない)
     #(do (println %)
          (* % 2))
     ```
@@ -722,12 +722,12 @@
 * メタデータを何に付加するかについては、よく注意したほうが良い。
 
     ```Clojure
-    ;; we attach the metadata to the var referenced by `a`
+    ;; `a`で参照されるvarにメタデータを付加している
     (def ^:private a {})
     (meta a) ;=> nil
     (meta #'a) ;=> {:private true}
 
-    ;; we attach the metadata to the empty hash-map value
+    ;; 空のハッシュマップ値にメタデータを付加している
     (def a ^:private {})
     (meta a) ;=> {:private true}
     (meta #'a) ;=> nil
@@ -994,7 +994,7 @@
 * 無意味なコメントを避ける。
 
     ```Clojure
-    ;; bad
+    ;; 悪い
     (inc counter) ; increments counter by one
     ```
 
