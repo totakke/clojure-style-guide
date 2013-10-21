@@ -187,14 +187,14 @@
     {:name "Bruce Wayne", :alter-ego "Batman"}
     ```
 
-* 後ろ側に連続する括弧は同じ行に含める。
+* 後ろ側に連続する括弧は、別々の行にせず、同じ行に含める。
 
     ```Clojure
-    ;; 良い
+    ;; 良い。同じ行になっている。
     (when something
       (something-else))
 
-    ;; 悪い
+    ;; 悪い。別の行になっている。
     (when something
       (something-else)
     )
