@@ -145,9 +145,9 @@
 * Unixスタイルの行エンコーディングを使用する。（*BSD/Solaris/Linux/OSXユーザはデフォルトで問題ないが、Windowsユーザは特に注意すること。）
     * Gitを使っているなら、次の設定を追加して、Windowsの行末コードを防ぐのもいい。
 
-        ```bash
-        $ git config --global core.autocrlf true
-        ```
+    ```
+    bash$ git config --global core.autocrlf true
+    ```
 
 * 開き括弧（`(`, `{`, `[`）の前の文字と、閉じ括弧（`)`, `}`, `]`）の後の文字は、括弧との間にスペースを設ける。
 逆に、開き括弧とそれに続く文字、閉じ括弧と直前の文字の間にはスペースを入れない。
