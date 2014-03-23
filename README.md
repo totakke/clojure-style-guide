@@ -540,7 +540,7 @@
     (.. System getProperties (get "os.name"))
     ```
 
-* `cond`や`condp`で残り全ての条件をキャッチするときは`:else`を使う。
+* `cond`で残り全ての条件をキャッチするときは`:else`を使う。
 
     ```Clojure
     ;; 良い
