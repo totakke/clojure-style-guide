@@ -142,8 +142,8 @@
       (bar))
     ```
 
-* Unixスタイルの行エンコーディングを使用する。（*BSD/Solaris/Linux/OSXユーザはデフォルトで問題ないが、Windowsユーザは特に注意すること。）
-    * Gitを使っているなら、次の設定を追加して、Windowsの行末コードを防ぐのもいい。
+* Unixスタイルの改行コードを使用する。（*BSD/Solaris/Linux/OSXユーザはデフォルトで問題ないが、Windowsユーザは特に注意すること。）
+    * Gitを使っているなら、次の設定を追加して、Windowsの改行コードを防ぐのもいい。
 
     ```
     bash$ git config --global core.autocrlf true
