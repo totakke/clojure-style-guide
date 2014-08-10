@@ -450,7 +450,7 @@
 
     ```Clojure
     ;; 良い
-    (if-not (pred)
+    (if-not pred
       (foo))
 
     ;; 悪い
