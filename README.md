@@ -394,6 +394,18 @@
         (recur (rest s))))
     ```
 
+* <a name="to-vector"></a>
+  Prefer `vec` over `into` when you need to convert a sequence into a vector.
+<sup>[[link](#to-vector)]</sup>
+
+    ```Clojure
+    ;; good
+    (vec some-seq)
+
+    ;; bad
+    (into [] some-seq)
+    ```
+
 * <a name="when-instead-of-single-branch-if"></a>
   `(if ... (do ...)`の代わりに`when`を使う。
 <sup>[[リンク](#when-instead-of-single-branch-if)]</sup>
