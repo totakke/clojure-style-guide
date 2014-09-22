@@ -395,14 +395,14 @@
     ```
 
 * <a name="to-vector"></a>
-  Prefer `vec` over `into` when you need to convert a sequence into a vector.
-<sup>[[link](#to-vector)]</sup>
+  シーケンスをベクタに変換する必要があるときは、`into`よりも`vec`を用いたほうが良い。
+<sup>[[リンク](#to-vector)]</sup>
 
     ```Clojure
-    ;; good
+    ;; 良い
     (vec some-seq)
 
-    ;; bad
+    ;; 悪い
     (into [] some-seq)
     ```
 
