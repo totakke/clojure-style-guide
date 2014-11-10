@@ -867,8 +867,8 @@
     ```
 
 * <a name="access-private-var"></a>
-  To access a private var (e.g. for testing), use the `@#'some.ns/var` form.
-<sup>[[link](#access-private-var)]</sup>
+  （例えばテストのために）プライベートなvarにアクセスするには、`@#'some.ns/var`フォームを使う。
+<sup>[[リンク](#access-private-var)]</sup>
 
 * <a name="attach-metadata-carefully"></a>
   メタデータを何に付加するかについては、よく注意したほうが良い。
