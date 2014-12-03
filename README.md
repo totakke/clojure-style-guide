@@ -125,9 +125,9 @@
     (defn foo
       ([x] (bar x))
       ([x y]
-        (if (predicate? x)
-          (bar x)
-          (baz x))))
+       (if (predicate? x)
+         (bar x)
+         (baz x))))
 
     ;; 悪い
     (defn foo
@@ -135,6 +135,28 @@
             (bar x)
             (baz x)))
     ```
+
+* <a name="multiple-arity-indentation"></a>
+  Indent each arity form of a function definition vertically aligned with its
+  parameters.<sup>[[link](#multiple-arity-indentation)]</sup>
+
+```Clojure
+;; good
+(defn foo
+  "I have two arities."
+  ([x]
+   (foo x 1))
+  ([x y]
+   (+ x y)))
+
+;; bad - extra indentation
+(defn foo
+  "I have two arities."
+  ([x]
+    (foo x 1))
+  ([x y]
+    (+ x y)))
+```
 
 * <a name="align-docstring-lines"></a>
   複数行に渡るドキュメント文字列はインデントする。
