@@ -647,9 +647,9 @@
     ```Clojure
     ;; 良い
     (-> [1 2 3]
-        reverse
-        (conj 4)
-        prn)
+      reverse
+      (conj 4)
+      prn)
 
     ;; あまり良くない
     (prn (conj (reverse [1 2 3])
@@ -657,8 +657,8 @@
 
     ;; 良い
     (->> (range 1 10)
-         (filter even?)
-         (map (partial * 2)))
+      (filter even?)
+      (map (partial * 2)))
 
     ;; あまり良くない
     (map (partial * 2)
@@ -759,14 +759,12 @@
 	(test1)
 	(long-function-name-which-requires-a-new-line
        (complicated-sub-form
-          (-> 'which-spans
-              multiple-lines)))
+          (-> 'which-spans multiple-lines)))
 
 	(test2)
 	(another-very-long-function-name
        (yet-another-sub-form
-          (-> 'which-spans
-              multiple-lines)))
+          (-> 'which-spans multiple-lines)))
 
     :else
     (the-fall-through-default-case
