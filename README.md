@@ -151,6 +151,27 @@
       [x] (bar x))
     ```
 
+* <a name="docstring-after-fn-name">
+  When adding a docstring – especially to a function using the above form – take
+  care to correctly place the docstring after the function name, not after the
+  argument vector.  The latter is not invalid syntax and won’t cause an error,
+  but includes the string as a form in the function body without attaching it to
+  the var as documentation.
+<sup>[[link](#docstring-after-fn-name)]</sup>
+
+    ```Clojure
+    ;; good
+    (defn foo
+      "docstring"
+      [x]
+      (bar x))
+
+    ;; bad
+    (defn foo [x]
+      "docstring"
+      (bar x))
+    ```
+
 * <a name="oneline-short-fn"></a>
   関数本体が短い場合、引数ベクタと関数本体の間の改行は省略しても良い。
 <sup>[[リンク](#oneline-short-fn)]</sup>
