@@ -827,10 +827,10 @@
 
     ```Clojure
     ;; 良い
-    (remove #{0} [0 1 2 3 4 5])
+    (remove #{1} [0 1 2 3 4 5])
 
     ;; 悪い
-    (remove #(= % 0) [0 1 2 3 4 5])
+    (remove #(= % 1) [0 1 2 3 4 5])
 
     ;; 良い
     (count (filter #{\a \e \i \o \u} "mary had a little lamb"))
