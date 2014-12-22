@@ -137,11 +137,11 @@
     ```
 
 * <a name="multiple-arity-indentation"></a>
-  Indent each arity form of a function definition vertically aligned with its
-  parameters.<sup>[[link](#multiple-arity-indentation)]</sup>
+  関数定義における各アリティのフォームのインデントは、そのパラメータと左揃えにする。
+<sup>[[リンク](#multiple-arity-indentation)]</sup>
 
 ```Clojure
-;; good
+;; 良い
 (defn foo
   "I have two arities."
   ([x]
@@ -149,7 +149,7 @@
   ([x y]
    (+ x y)))
 
-;; bad - extra indentation
+;; 悪い - 過剰なインデント
 (defn foo
   "I have two arities."
   ([x]
