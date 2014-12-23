@@ -44,22 +44,37 @@
 > ほとんど全ての人は、自分のスタイル以外のあらゆるスタイルは汚くて読みにくい、と思っている。「自分のスタイル以外の」を削れば、それはおそらく正しい…<br/>
 > -- Jerry Coffin (インデントについて)
 
-* <a name="two-spaces"></a>
-  各インデントには2つの **スペース** を使う。タブは使わない。
-<sup>[[リンク](#two-spaces)]</sup>
+* <a name="spaces"></a>
+  各インデントには **スペース** を使う。タブは使わない。
+<sup>[[リンク](#spaces)]</sup>
+
+* <a name="body-indentation"></a>
+ボディパラメータをもつフォームのボディには2つのスペースを使う。これには全ての`def`フォーム、ローカル束縛をもつスペシャルフォームおよびマクロ（例：`loop`, `let`, `when-let`）、そして`when`, `cond`, `->`, `->>`, `as->`, `case`,
+`with-*`などの多くのマクロが含まれる。
+<sup>[[リンク](#body-indentation)]</sup>
+
 
     ```Clojure
     ;; 良い
     (when something
       (something-else))
 
+    (with-out-str
+      (println "Hello, ")
+      (println "world!"))
+
     ;; 悪い - 4つのスペース
     (when something
         (something-else))
+
+    ;; 悪い - 1つのスペース
+    (with-out-str
+     (println "Hello, ")
+     (println "world!"))
     ```
 
 * <a name="vertically-align-fn-args"></a>
-  関数の引数は左揃えにする。
+  複数行にわたる関数（マクロ）の引数は左揃えにする。
 <sup>[[リンク](#vertically-align-fn-args)]</sup>
 
     ```Clojure
@@ -71,6 +86,33 @@
     (filter even?
       (range 1 10))
     ```
+
+* <a name="one-space-indent"></a>
+関数（マクロ）名と同じ行に引数をもたない関数（マクロ）では、インデントには1つのスペースを用いる。
+<sup>[[リンク](#one-space-indent)]</sup>
+
+    ```Clojure
+    ;; 良い
+    (filter
+     even?
+     (range 1 10))
+
+    (or
+     ala
+     bala
+     portokala)
+
+    ;; 悪い - 2つのスペースによるインデント
+    (filter
+      even?
+      (range 1 10))
+
+    (or
+      ala
+      bala
+      portokala)
+    ```
+
 
 * <a name="vertically-align-let-and-map"></a>
   `let`の束縛とマップのキーワードを左揃えにする。
