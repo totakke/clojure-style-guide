@@ -182,23 +182,23 @@
   関数定義における各アリティのフォームのインデントは、そのパラメータと左揃えにする。
 <sup>[[リンク](#multiple-arity-indentation)]</sup>
 
-```Clojure
-;; 良い
-(defn foo
-  "I have two arities."
-  ([x]
-   (foo x 1))
-  ([x y]
-   (+ x y)))
+    ```Clojure
+    ;; 良い
+    (defn foo
+      "I have two arities."
+      ([x]
+       (foo x 1))
+      ([x y]
+       (+ x y)))
 
-;; 悪い - 過剰なインデント
-(defn foo
-  "I have two arities."
-  ([x]
-    (foo x 1))
-  ([x y]
-    (+ x y)))
-```
+    ;; 悪い - 過剰なインデント
+    (defn foo
+      "I have two arities."
+      ([x]
+        (foo x 1))
+      ([x y]
+        (+ x y)))
+    ```
 
 * <a name="align-docstring-lines"></a>
   複数行に渡るドキュメント文字列はインデントする。
