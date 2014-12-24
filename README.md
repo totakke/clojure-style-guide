@@ -790,21 +790,21 @@
 
     ```Clojure
     ;; 良い
-	(cond
-	  (test1) (action1)
-	  (test2) (action2)
-	  :else   (default-action))
+    (cond
+      (test1) (action1)
+      (test2) (action2)
+      :else   (default-action))
 
-	;; まあ良い
-	(cond
-	;; test case 1
-	(test1)
-	(long-function-name-which-requires-a-new-line
+    ;; まあ良い
+    (cond
+    ;; test case 1
+    (test1)
+    (long-function-name-which-requires-a-new-line
        (complicated-sub-form
           (-> 'which-spans multiple-lines)))
 
-	(test2)
-	(another-very-long-function-name
+    (test2)
+    (another-very-long-function-name
        (yet-another-sub-form
           (-> 'which-spans multiple-lines)))
 
