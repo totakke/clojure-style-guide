@@ -49,7 +49,7 @@
 <sup>[[リンク](#spaces)]</sup>
 
 * <a name="body-indentation"></a>
-ボディパラメータをもつフォームのボディには2つのスペースを使う。これには全ての`def`フォーム、ローカル束縛をもつスペシャルフォームおよびマクロ（例：`loop`, `let`, `when-let`）、そして`when`, `cond`, `->`, `->>`, `as->`, `case`,
+ボディパラメータをもつフォームのボディには2つのスペースを使う。これには全ての`def`フォーム、ローカル束縛をもつスペシャルフォームおよびマクロ（例：`loop`, `let`, `when-let`）、そして`when`, `cond`, `as->`, `case`,
 `with-*`などの多くのマクロが含まれる。
 <sup>[[リンク](#body-indentation)]</sup>
 
@@ -689,9 +689,9 @@
     ```Clojure
     ;; 良い
     (-> [1 2 3]
-      reverse
-      (conj 4)
-      prn)
+        reverse
+        (conj 4)
+        prn)
 
     ;; あまり良くない
     (prn (conj (reverse [1 2 3])
@@ -699,8 +699,8 @@
 
     ;; 良い
     (->> (range 1 10)
-      (filter even?)
-      (map (partial * 2)))
+         (filter even?)
+         (map (partial * 2)))
 
     ;; あまり良くない
     (map (partial * 2)
