@@ -334,7 +334,7 @@
 <sup>[[リンク](#one-file-per-namespace)]</sup>
 
 * <a name="comprehensive-ns-declaration"></a>
-  全ての名前空間は、複数の`import`, `require`, `refer`, `use`からなる`ns`フォームで始める。
+  全ての名前空間は、複数の`refer`, `require`, `import`からなる`ns`フォームで始める。順序は慣習的に`refer`, `require`, `import`の順とする。
 <sup>[[リンク](#comprehensive-ns-declaration)]</sup>
 
     ```Clojure
@@ -343,7 +343,6 @@
       (:require [clojure.string :as s :refer [blank?]]
                 [clojure.set :as set]
                 [clojure.java.shell :as sh])
-      (:use [clojure xml zip])
       (:import java.util.Date
                java.text.SimpleDateFormat
                [java.util.concurrent Executors
@@ -351,11 +350,19 @@
     ```
 
 * <a name="prefer-require-over-use"></a>
-  nsマクロでは、`:use`よりも`:require :refer :all`を用いるほうが良い。
+  `ns`フォームでは`:require :refer :all`よりも`:require :refer`、それよりも`:require :as`が好ましい。また`:use`よりも`:require`が好ましい。今後新しいコードでは`:use`を非推奨とするか検討すべきだ。
 <sup>[[リンク](#prefer-require-over-use)]</sup>
 
     ```Clojure
     ;; 良い
+    (ns examples.ns
+      (:require [clojure.zip :as zip]))
+
+    ;; 良い
+    (ns examples.ns
+      (:require [clojure.zip :refer [lefts rights]))
+
+    ;; 正当な理由があれば使ってもよい
     (ns examples.ns
       (:require [clojure.zip :refer :all]))
 
