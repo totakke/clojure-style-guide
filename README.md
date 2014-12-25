@@ -608,6 +608,18 @@
     (not (= foo bar))
     ```
 
+* <a name="printf"></a>
+  Use `printf` instead of `(print (format ...))`.
+<sup>[[link](#printf)]</sup>
+
+    ```Clojure
+    ;; good
+    (printf "Hello, %s!\n" name)
+
+    ;; ok
+    (println (format "Hello, %s!" name))
+    ```
+
 * <a name="multiple-arity-of-gt-and-ls-fns"></a>
   比較を行うときは、Clojure関数の`<`や`>`などは可変長引数を許していることを覚えておこう。
 <sup>[[リンク](#multiple-arity-of-gt-and-ls-fns)]</sup>
