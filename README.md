@@ -609,11 +609,11 @@
     ```
 
 * <a name="printf"></a>
-  Use `printf` instead of `(print (format ...))`.
-<sup>[[link](#printf)]</sup>
+  `(print (format ...))`の代わりに`printf`を使う。
+<sup>[[リンク](#printf)]</sup>
 
     ```Clojure
-    ;; good
+    ;; 良い
     (printf "Hello, %s!\n" name)
 
     ;; ok
