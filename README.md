@@ -152,21 +152,17 @@
     ```
 
 * <a name="docstring-after-fn-name"></a>
-  When adding a docstring – especially to a function using the above form – take
-  care to correctly place the docstring after the function name, not after the
-  argument vector.  The latter is not invalid syntax and won’t cause an error,
-  but includes the string as a form in the function body without attaching it to
-  the var as documentation.
-<sup>[[link](#docstring-after-fn-name)]</sup>
+  ドキュメント文字列を付加するときは、上記フォームを用いる関数は特に、ドキュメント文字列は引数ベクタの後ろではなく、関数名の後ろに置くことに注意する。前者は文法的には間違っておらずエラーにもならないが、そのvarにドキュメントは付加されず、関数本体に1つのフォームとしてその文字列が含まれることになる。
+<sup>[[リンク](#docstring-after-fn-name)]</sup>
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defn foo
       "docstring"
       [x]
       (bar x))
 
-    ;; bad
+    ;; 悪い
     (defn foo [x]
       "docstring"
       (bar x))
