@@ -412,6 +412,11 @@
   3つか4つを超えるパラメータを持つパラメータリストの使用を避ける。
 <sup>[[リンク](#4-positional-fn-params-limit)]</sup>
 
+* <a name="forward-references"></a>
+  前方参照を避ける。前方参照は時として必要になるが、実際にはそのような機会はまれだ。
+<sup>[[リンク](#forward-references)]</sup>
+
+
 ## 構文
 
 * <a name="ns-fns-only-in-repl"></a>
@@ -419,7 +424,7 @@
 <sup>[[リンク](#ns-fns-only-in-repl)]</sup>
 
 * <a name="declare"></a>
-  前方参照を可能にするには`declare`を使う。
+  前方参照が必要なとき、前方参照を可能にするには`declare`を使う。
 <sup>[[リンク](#declare)]</sup>
 
 * <a name="higher-order-fns"></a>
