@@ -151,6 +151,31 @@
       [x] (bar x))
     ```
 
+* <a name="multimethod-dispatch-val-placement"></a>
+  Place the `dispatch-val` of a multimethod on the same line as the
+  function name.
+<sup>[[link](#multimethod-dispatch-val-placement)]</sup>
+
+
+    ```Clojure
+    ;; good
+    (defmethod foo :bar [x] (baz x))
+
+    (defmethod foo :bar
+      [x]
+      (baz x))
+
+    ;; bad
+    (defmethod foo
+      :bar
+      [x]
+      (baz x))
+
+    (defmethod foo
+      :bar [x]
+      (baz x))
+    ```
+
 * <a name="docstring-after-fn-name"></a>
   ドキュメント文字列を付加するときは、上記フォームを用いる関数は特に、ドキュメント文字列は引数ベクタの後ろではなく、関数名の後ろに置くことに注意する。前者は文法的には間違っておらずエラーにもならないが、そのvarにドキュメントは付加されず、関数本体に1つのフォームとしてその文字列が含まれることになる。
 <sup>[[リンク](#docstring-after-fn-name)]</sup>
