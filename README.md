@@ -152,20 +152,19 @@
     ```
 
 * <a name="multimethod-dispatch-val-placement"></a>
-  Place the `dispatch-val` of a multimethod on the same line as the
-  function name.
-<sup>[[link](#multimethod-dispatch-val-placement)]</sup>
+  マルチメソッドの`dispatch-val`は関数名と同じ行に置く。
+<sup>[[リンク](#multimethod-dispatch-val-placement)]</sup>
 
 
     ```Clojure
-    ;; good
+    ;; 良い
     (defmethod foo :bar [x] (baz x))
 
     (defmethod foo :bar
       [x]
       (baz x))
 
-    ;; bad
+    ;; 悪い
     (defmethod foo
       :bar
       [x]
