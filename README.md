@@ -493,6 +493,23 @@
       ...)
     ```
 
+* <a name="alter-var"></a>
+  Use `alter-var-root` instead of `def` to change the value of a var.
+<sup>[[link]](#alter-var)</sup>
+
+    ```Clojure
+    ;; good
+    (def thing 1) ; value of thing is now 1
+    ; do some stuff with thing
+    (alter-var-root #'thing (constantly nil)) ; value of thing is now nil
+
+    ;; bad
+    (def thing 1)
+    ; do some stuff with thing
+    (def thing nil)
+    ; value of thing is now nil
+    ```
+
 * <a name="nil-punning"></a>
   シーケンスが空かどうかをチェックするには`seq`を使う（このテクニックはしばしば *nil punning* と呼ばれる）。
 <sup>[[リンク](#nil-punning)]</sup>
