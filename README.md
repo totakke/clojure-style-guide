@@ -494,20 +494,20 @@
     ```
 
 * <a name="alter-var"></a>
-  Use `alter-var-root` instead of `def` to change the value of a var.
-<sup>[[link]](#alter-var)</sup>
+  varの値を変更するには、`def`の代わりに`alter-var-root`を使う。
+<sup>[[リンク]](#alter-var)</sup>
 
     ```Clojure
-    ;; good
-    (def thing 1) ; value of thing is now 1
-    ; do some stuff with thing
-    (alter-var-root #'thing (constantly nil)) ; value of thing is now nil
+    ;; 良い
+    (def thing 1) ; thingの値は1
+    ; thingを用いた何らかの処理
+    (alter-var-root #'thing (constantly nil)) ; thingの値はnil
 
-    ;; bad
+    ;; 悪い
     (def thing 1)
-    ; do some stuff with thing
+    ; thingを用いた何らかの処理
     (def thing nil)
-    ; value of thing is now nil
+    ; thingの値はnil
     ```
 
 * <a name="nil-punning"></a>
