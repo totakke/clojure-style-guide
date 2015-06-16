@@ -241,15 +241,11 @@
         (+ x y)))
 	```
 
-* <a name="multiple-arity-order"></a> Sort the arities of a function
-  from fewest to most arguments. The common case of multi-arity
-  functions is that some K arguments fully specifies the function's
-  behavior, and that arities N < K partially apply the K arity, and
-  arities N > K provide a fold of the K arity over varargs.
-  <sup>[[link](#multiple-arity-order)]</sup>
+* <a name="multiple-arity-order"></a> 関数のアリティは、引数が最も少ないものから多いものの順に並べる。マルチアリティ関数の通例として、K個の引数を持つものが関数の振る舞いを定義していて、N個（< K）の引数を持つアリティはK引数のアリティの部分適用、N個（> K）の引数を持つアリティは可変長引数であるK引数のアリティの畳み込み、という場合がある。
+  <sup>[[リンク](#multiple-arity-order)]</sup>
 
     ```Clojure
-    ;; good - it's easy to scan for the nth arity
+    ;; 良い - n番目のアリティを見つけやすい
     (defn foo
       "I have two arities."
       ([x]
@@ -257,7 +253,7 @@
       ([x y]
        (+ x y)))
 
-    ;; okay - the other arities are applications of the two-arity 
+    ;; ok - 他のアリティは2引数のアリティの適用
     (defn foo
       "I have two arities."
       ([x y]
@@ -267,7 +263,7 @@
 	  ([x y z & more]
 	    (reduce foo (foo x (foo y z)) more)))
 	  
-	;; bad - unordered for no apparent reason
+	;; 悪い - 明確な理由のない順序
 	(defn foo
 	  ([x] 1)
 	  ([x y z] (foo x (foo y z)))
