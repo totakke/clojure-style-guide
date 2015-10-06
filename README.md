@@ -239,7 +239,7 @@
         (foo x 1))
       ([x y]
         (+ x y)))
-	```
+    ```
 
 * <a name="multiple-arity-order"></a> 関数のアリティは、引数が最も少ないものから多いものの順に並べる。マルチアリティ関数の通例として、K個の引数を持つものが関数の振る舞いを定義していて、N個（< K）の引数を持つアリティはK引数のアリティの部分適用、N個（> K）の引数を持つアリティは可変長引数であるK引数のアリティの畳み込み、という場合がある。
   <sup>[[リンク](#multiple-arity-order)]</sup>
@@ -257,18 +257,18 @@
     (defn foo
       "I have two arities."
       ([x y]
-        (+ x y))
+       (+ x y))
       ([x]
-        (foo x 1))
-	  ([x y z & more]
-	    (reduce foo (foo x (foo y z)) more)))
-	  
-	;; 悪い - 明確な理由のない順序
-	(defn foo
-	  ([x] 1)
-	  ([x y z] (foo x (foo y z)))
-	  ([x y] (+ x y))
-	  ([w x y z & more] (reduce foo (foo w (foo x (foo y z))) more)))
+       (foo x 1))
+      ([x y z & more]
+       (reduce foo (foo x (foo y z)) more)))
+
+    ;; 悪い - 明確な理由のない順序
+    (defn foo
+      ([x] 1)
+      ([x y z] (foo x (foo y z)))
+      ([x y] (+ x y))
+      ([w x y z & more] (reduce foo (foo w (foo x (foo y z))) more)))
     ```
 
 * <a name="align-docstring-lines"></a>
