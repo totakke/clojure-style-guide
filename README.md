@@ -24,6 +24,10 @@
 
 [Transmuter](https://github.com/TechnoGate/transmuter)を利用することで、このスタイルガイドのPDF版やHTML版を生成することができる。
 
+Translations of the guide are available in the following languages:
+
+* [Korean](https://github.com/kwakbab/clojure-style-guide/blob/master/README-koKO.md)
+
 ## 目次
 
 * [ソースコードのレイアウトと構造](#source-code-layout--organization)
