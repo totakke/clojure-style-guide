@@ -26,6 +26,7 @@
 
 このスタイルガイドは以下の言語に翻訳されている：
 
+* [Japanese](https://github.com/totakke/clojure-style-guide/blob/ja/README.md)
 * [韓国語](https://github.com/kwakbab/clojure-style-guide/blob/master/README-koKO.md)
 
 ## 目次
