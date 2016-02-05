@@ -824,18 +824,6 @@
          (filter even? (range 1 10)))
     ```
 
-* <a name="dot-dot-macro"></a>
-  Java呼び出しの際のチェーンメソッドコールには、`->`よりも`..`が好ましい。
-<sup>[[リンク](#dot-dot-macro)]</sup>
-
-    ```Clojure
-    ;; 良い
-    (-> (System/getProperties) (.get "os.name"))
-
-    ;; より良い
-    (.. System getProperties (get "os.name"))
-    ```
-
 * <a name="else-keyword-in-cond"></a>
   `cond`で残り全ての条件をキャッチするときは`:else`を使う。
 <sup>[[リンク](#else-keyword-in-cond)]</sup>
