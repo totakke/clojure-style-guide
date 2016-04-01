@@ -22,7 +22,7 @@
 
 また、Clojure開発コミュニティが[ライブラリのコーディング規約](http://dev.clojure.org/display/community/Library+Coding+Standards)の一覧をまとめていることも覚えておいてほしい。
 
-[Transmuter](https://github.com/TechnoGate/transmuter)を利用することで、このスタイルガイドのPDF版やHTML版を生成することができる。
+[Pandoc](http://pandoc.org/)を利用することで、このスタイルガイドのPDF版やHTML版を生成することができる。
 
 このスタイルガイドは以下の言語に翻訳されている：
 
