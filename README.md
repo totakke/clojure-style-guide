@@ -1535,6 +1535,7 @@
 慣用的なClojureコードを書くのを助けてくれるツールがClojureコミュニティによって作られている。
 
 * [Slamhound](https://github.com/technomancy/slamhound)は既存のコードから適切な`ns`定義を自動的に生成してくれる。
+
 * [kibit](https://github.com/jonase/kibit)はClojure向けの静的コード解析ツールだ。より慣用的な関数やマクロの探索には[core.logic](https://github.com/clojure/core.logic)を用いている。
 
 # 広めてください
