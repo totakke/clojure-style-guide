@@ -43,6 +43,7 @@
     * [コメントアノテーション](#comment-annotations)
 * [実際のコードでは](#existential)
 * [ツール](#tooling)
+* [テスト](#testing)
 
 ## <a name="source-code-layout--organization"></a>ソースコードのレイアウトと構造
 
@@ -1537,6 +1538,31 @@
 * [Slamhound](https://github.com/technomancy/slamhound)は既存のコードから適切な`ns`定義を自動的に生成してくれる。
 
 * [kibit](https://github.com/jonase/kibit)はClojure向けの静的コード解析ツールだ。より慣用的な関数やマクロの探索には[core.logic](https://github.com/clojure/core.logic)を用いている。
+
+## <a name="testing"></a>テスト
+
+* <a name="test-directory-structure"></a>
+  テストコードは`test/yourproject/`などの（`src/yourproject/`とは）別ディレクトリに配置する。ビルドツールは必要に応じてこれらのディレクトリを用意してくれる。ほとんどのテンプレートは自動的にこれらのディレクトリを生成する。
+<sup>[[リンク](#test-directory-structure)]</sup>
+
+* <a name="test-ns-naming"></a>
+  名前空間は`yourproject.something-test`のように命名し、ファイルは`test/yourproject/something_test.clj`（あるいは `.cljc`, `cljs`）に普通は作成する。
+<sup>[[リンク](#test-ns-naming)]</sup>
+
+* <a name="test-naming"></a>
+ `clojure.test`を用いるときは、`deftest`でテストを定義し、`something-test`と名付ける。例えば、
+
+   ```clojure
+   ;; 良い
+   (deftest something-test ...)
+
+   ;; 悪い
+   (deftest something-tests ...)
+   (deftest test-something ...)
+   (deftest something ...)
+   ```
+
+<sup>[[リンク](#test-naming)]</sup>
 
 # 広めてください
 
