@@ -835,13 +835,13 @@
     (cond
       (< n 0) "negative"
       (> n 0) "positive"
-      :else "zero"))
+      :else "zero")
 
     ;; 悪い
     (cond
       (< n 0) "negative"
       (> n 0) "positive"
-      true "zero"))
+      true "zero")
     ```
 
 * <a name="condp"></a>
