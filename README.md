@@ -29,6 +29,7 @@
 * [中国語](https://github.com/geekerzp/clojure-style-guide/blob/master/README-zhCN.md)
 * [日本語](https://github.com/totakke/clojure-style-guide/blob/ja/README.md)
 * [韓国語](https://github.com/kwakbab/clojure-style-guide/blob/master/README-koKO.md)
+* [ポルトガル語](https://github.com/theSkilled/clojure-style-guide/blob/pt-BR/README.md) (作業中)
 
 ## 目次
 
