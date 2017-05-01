@@ -439,7 +439,7 @@
 
     ;; 良い
     (ns examples.ns
-      (:require [clojure.zip :refer [lefts rights]))
+      (:require [clojure.zip :refer [lefts rights]]))
 
     ;; 正当な理由があれば使ってもよい
     (ns examples.ns
