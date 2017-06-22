@@ -46,6 +46,7 @@
 * [実際のコードでは](#existential)
 * [ツール](#tooling)
 * [テスト](#testing)
+* [ライブラリの構成](#library-organization)
 
 ## <a name="source-code-layout--organization"></a>ソースコードのレイアウトと構造
 
@@ -1565,6 +1566,21 @@
    ```
 
 <sup>[[リンク](#test-naming)]</sup>
+
+
+## <a name="library-organization"></a>ライブラリの構成
+
+* <a name="lib-coordinates"></a>
+  他の人が使えるようにライブラリを公開する場合、[Central Repositoryのガイドライン](http://central.sonatype.org/pages/choosing-your-coordinates.html)にしたがって`groupId`と`artifactId`を選ぶ。これにより名前の衝突が避けられ、幅広い利用が促進される。良い例として[Component](https://github.com/stuartsierra/component)があげられる。
+<sup>[[リンク](#lib-coordinates)]</sup>
+
+* <a name="lib-min-dependencies"></a>
+  不必要な依存を避ける。たとえば、何百もの使う予定のないvarを含んだライブラリに依存するよりも、3行のユーティリティ関数をプロジェクトにコピーしてしまうほうが良い。
+<sup>[[リンク](#lib-min-dependencies)]</sup>
+
+* <a name="lib-core-separate-from-tools"></a>
+  コアの機能とインテグレーション部分は別々のアーティファクトにする。そうすれば、ユーザはあなたのライブラリを無関係なツール依存に制限されることなく利用できる。たとえば、[Component](https://github.com/stuartsierra/component)はコア機能を提供し、[reloaded](https://github.com/stuartsierra/reloaded)はLeiningenとのインテグレーションを提供している。
+<sup>[[リンク](#lib-core-separate-from-tools)]</sup>
 
 # 広めてください
 
