@@ -43,6 +43,7 @@
 * [マクロ](#macros)
 * [コメント](#comments)
     * [コメントアノテーション](#comment-annotations)
+* [ドキュメント](#documentation)
 * [実際のコードでは](#existential)
 * [ツール](#tooling)
 * [テスト](#testing)
@@ -184,23 +185,6 @@
       (baz x))
     ```
 
-* <a name="docstring-after-fn-name"></a>
-  ドキュメント文字列を付加するときは、上記フォームを用いる関数は特に、ドキュメント文字列は引数ベクタの後ろではなく、関数名の後ろに置くことに注意する。前者は文法的には間違っておらずエラーにもならないが、そのvarにドキュメントは付加されず、関数本体に1つのフォームとしてその文字列が含まれることになる。
-<sup>[[リンク](#docstring-after-fn-name)]</sup>
-
-    ```Clojure
-    ;; 良い
-    (defn foo
-      "docstring"
-      [x]
-      (bar x))
-
-    ;; 悪い
-    (defn foo [x]
-      "docstring"
-      (bar x))
-    ```
-
 * <a name="oneline-short-fn"></a>
   関数本体が短い場合、引数ベクタと関数本体の間の改行は省略しても良い。
 <sup>[[リンク](#oneline-short-fn)]</sup>
@@ -278,26 +262,6 @@
       ([x y z] (foo x (foo y z)))
       ([x y] (+ x y))
       ([w x y z & more] (reduce foo (foo w (foo x (foo y z))) more)))
-    ```
-
-* <a name="align-docstring-lines"></a>
-  複数行に渡るドキュメント文字列はインデントする。
-<sup>[[リンク](#align-docstring-lines)]</sup>
-
-    ```Clojure
-    ;; 良い
-    (defn foo
-      "Hello there. This is
-      a multi-line docstring."
-      []
-      (bar))
-
-    ;; 悪い
-    (defn foo
-      "Hello there. This is
-    a multi-line docstring."
-      []
-      (bar))
     ```
 
 * <a name="crlf"></a>
@@ -1519,6 +1483,169 @@
 * <a name="document-annotations"></a>
   そのほうが適切だと思えば、その他独自のアノテーションキーワードを用いる。ただし、プロジェクトの`README`などに忘れずにドキュメント化しておく。
 <sup>[[リンク](#document-annotations)]</sup>
+
+## <a name="documentation"></a>ドキュメント
+
+ドキュメント文字列は、Clojureコードにドキュメントを付加するための最も基本的な方法だ。多くの定義フォーム（例：`def`, `defn`, `defmacro`, `ns`）はドキュメント文字列をサポートしており、そのvarがパブリックであるかプライベートであるかに関わらず、基本的にはドキュメント文字列を活用するのが良い。
+
+定義フォームがドキュメント文字列を直接的にサポートしていない場合でも、メタデータの`:doc`属性にドキュメントを記述することができる。
+
+このセクションでは、Clojureコードのドキュメンテーションを行う上で、いくつかの慣用的方法とベストプラクティスを紹介する。
+
+* <a name="prefer-docstrings"></a>
+  フォームがドキュメント文字列を直接的にサポートしている場合、`:doc`メタデータよりもそれを用いるほうが良い。
+  <sup>[[リンク](#prefer-docstrings)]</sup>
+
+```clojure
+;; 良い
+(defn foo
+  "This function doesn't do much."
+  []
+  ...)
+
+(ns foo.bar.core
+  "That's an awesome library.")
+
+;; 悪い
+(defn foo
+  ^{:doc "This function doesn't do much."}
+  []
+  ...)
+
+(ns ^{:doc "That's an awesome library.")
+  foo.bar.core)
+```
+
+* <a name="docstring-summary"></a>
+  ドキュメント文字列の最初の行は、大文字で始まる完結した文で、そのvarを簡潔に説明するものにする。これによって、ツール（ClojureエディタやIDE）が様々な場面でドキュメント文字列の要約を簡単に表示できるようになる。
+<sup>[[リンク](#docstring-summary)]</sup>
+
+```clojure
+;; 良い
+(defn frobnitz
+  "This function does a frobnitz.
+  It will do gnorwatz to achieve this, but only under certain
+  cricumstances."
+  []
+  ...)
+
+;; 悪い
+(defn frobnitz
+  "This function does a frobnitz. It will do gnorwatz to
+  achieve this, but only under certain cricumstances."
+  []
+  ...)
+```
+
+* <a name="document-pos-arguments"></a>
+  全ての引数をドキュメント化し、それらをバッククォート（\`）で囲む。そうすることで、エディタやIDEが引数を識別できるようになり、より高度な機能を提供できる可能性がある。
+<sup>[[リンク](#document-pos-arguments)]</sup>
+
+```clojure
+;; 良い
+(defn watsitz
+  "Watsitz takes a `frob` and converts it to a znoot.
+  When the `frob` is negative, the znoot becomes angry."
+  [frob]
+  ...)
+
+;; 悪い
+(defn watsitz
+  "Watsitz takes a frob and converts it to a znoot.
+  When the frob is negative, the znoot becomes angry."
+  [frob]
+  ...)
+```
+
+* <a name="document-references"></a>
+  ドキュメント文字列でのvarの参照を \` で囲み、ツールが識別できるようにする。
+<sup>[[リンク](#document-references)]</sup>
+
+```clojure
+;; 良い
+(defn wombat
+  "Acts much like `clojure.core/identity` except when it doesn't.
+  Takes `x` as an argument and returns that. If it feels like it."
+  [x]
+  ...)
+
+;; 悪い
+(defn wombat
+  "Acts much like clojure.core/identity except when it doesn't.
+  Takes `x` as an argument and returns that. If it feels like it."
+  [x]
+  ...)
+```
+
+* <a name="docstring-grammar"></a>
+  ドキュメント文字列は正しい英語の文で構成されるべきだ。全ての文は大文字で始まり、適切な句読点で終わる。また、各々の文の間には1つのスペースをはさむ。
+<sup>[[リンク](#docstring-grammar)]</sup>
+
+```clojure
+;; 良い
+(def foo
+  "All sentences should end with a period (or maybe an exclamation mark).
+  And the period should be followed by a space, unless it's the last sentence.")
+
+;; 悪い
+(def foo
+  "all sentences should end with a period (or maybe an exclamation mark).
+  And the period should be followed by a space, unless it's the last sentence")
+```
+
+* <a name="docstring-indentation"></a>
+  複数行に渡るドキュメント文字列は、2つのスペースでインデントする。
+<sup>[[リンク](#docstring-indentation)]</sup>
+
+```clojure
+;; 良い
+(ns my.ns
+  "It is actually possible to document a ns.
+  It's a nice place to describe the purpose of the namespace and maybe even
+  the overall conventions used. Note how _not_ indenting the doc string makes
+  it easier for tooling to display it correctly.")
+
+;; 悪い
+(ns my.ns
+  "It is actually possible to document a ns.
+It's a nice place to describe the purpose of the namespace and maybe even
+the overall conventions used. Note how _not_ indenting the doc string makes
+it easier for tooling to display it correctly.")
+```
+
+* <a name="docstring-leading-trailing-whitespace"></a>
+  ドキュメント文字列の最初と最後には余計な空白を入れない。
+<sup>[[リンク](#docstring-leading-trailing-whitespace)]</sup>
+
+```clojure
+;; 良い
+(def foo
+  "I'm so awesome."
+  42)
+
+;; 悪い
+(def silly
+  "    It's just silly to start a doc string with spaces.
+  Just as silly as it is to end it with a bunch of them.      "
+  42)
+```
+
+* <a name="docstring-after-fn-name"></a>
+  ドキュメント文字列を付加するときは、上記フォームを用いる関数は特に、ドキュメント文字列は引数ベクタの後ろではなく、関数名の後ろに置くことに注意する。前者は文法的には間違っておらずエラーにもならないが、そのvarにドキュメントは付加されず、関数本体に1つのフォームとしてその文字列が含まれることになる。
+<sup>[[リンク](#docstring-after-fn-name)]</sup>
+
+```Clojure
+;; 良い
+(defn foo
+  "docstring"
+  [x]
+  (bar x))
+
+;; 悪い
+(defn foo [x]
+  "docstring"
+  (bar x))
+```
 
 ## <a name="existential"></a>実際のコードでは
 
