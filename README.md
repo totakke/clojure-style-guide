@@ -1680,7 +1680,8 @@ it easier for tooling to display it correctly.")
 <sup>[[リンク](#test-ns-naming)]</sup>
 
 * <a name="test-naming"></a>
- `clojure.test`を用いるときは、`deftest`でテストを定義し、`something-test`と名付ける。例えば、
+  `clojure.test`を用いるときは、`deftest`でテストを定義し、`something-test`と名付ける。
+  <sup>[[リンク](#test-naming)]</sup>
 
    ```clojure
    ;; 良い
@@ -1691,9 +1692,6 @@ it easier for tooling to display it correctly.")
    (deftest test-something ...)
    (deftest something ...)
    ```
-
-<sup>[[リンク](#test-naming)]</sup>
-
 
 ## <a name="library-organization"></a>ライブラリの構成
 
