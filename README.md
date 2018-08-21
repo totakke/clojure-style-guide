@@ -1709,6 +1709,14 @@ it easier for tooling to display it correctly.")
   コアの機能とインテグレーション部分は別々のアーティファクトにする。そうすれば、ユーザはあなたのライブラリを無関係なツール依存に制限されることなく利用できる。たとえば、[Component](https://github.com/stuartsierra/component)はコア機能を提供し、[reloaded](https://github.com/stuartsierra/reloaded)はLeiningenとのインテグレーションを提供している。
 <sup>[[リンク](#lib-core-separate-from-tools)]</sup>
 
+# 貢献
+
+このスタイルガイドはまだまだ書き換えることができます。Clojureのコーディングスタイルに関心のある皆さんと一緒に取り組み、最終的にはClojureコミュニティ全体にとって有益な情報源を作り上げたいと思っています。
+
+遠慮なくチケットを作り、改良案をPull Requestで送ってください。どうかよろしくお願いします。
+
+[Patreon](https://www.patreon.com/bbatsov)あるいは[PayPal](https://www.paypal.me/bbatsov)を通して、金銭的にこのスタイルガイド（およびCIDER、nREPL、orchardといった私のClojureプロジェクト）を支援することもできます。
+
 # 広めてください
 
 コミュニティドリブンのスタイルガイドは、その存在を知らないコミュニティではあまり役に立ちません。どうか、このガイドについてツイートをして、あなたの友達や同僚と共有してください。頂いたあらゆるコメントや提案、意見がほんの少しずつ、このガイドを形作っていくのです。みんなで最高のスタイルガイドを作りましょう。
