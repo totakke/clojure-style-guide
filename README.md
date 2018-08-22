@@ -1432,13 +1432,63 @@
   アノテーションは通常、当該コードの直前に書かれるべきだ。
 <sup>[[リンク](#annotate-above)]</sup>
 
+    ```Clojure
+    ;; 良い
+    (defn some-fun
+      []
+      ;; FIXME: Replace baz with the newer bar.
+      (baz))
+
+    ;; 悪い
+    ;; FIXME: Replace baz with the newer bar.
+    (defn some-fun
+      []
+      (baz))
+    ```
+
 * <a name="annotate-keywords"></a>
   アノテーションキーワードの後にはコロンとスペースを入れ、その後で詳細を書く。
 <sup>[[リンク](#annotate-keywords)]</sup>
 
+    ```Clojure
+    ;; 良い
+    (defn some-fun
+      []
+      ;; FIXME: Replace baz with the newer bar.
+      (baz))
+
+    ;; 悪い - アノテーションの後にコロンがない
+    (defn some-fun
+      []
+      ;; FIXME Replace baz with the newer bar.
+      (baz))
+
+    ;; 悪い - コロンの後にスペースがない
+    (defn some-fun
+      []
+      ;; FIXME:Replace baz with the newer bar.
+      (baz))
+    ```
+
 * <a name="indent-annotations"></a>
   詳細が複数行に渡る場合、2行目以降は1行目に合わせてインデントするべきだ。
 <sup>[[リンク](#indent-annotations)]</sup>
+
+    ```Clojure
+    ;; 良い
+    (defn some-fun
+      []
+      ;; FIXME: This has crashed occasionally since v1.2.3. It may
+      ;;        be related to the BarBazUtil upgrade. (xz 13-1-31)
+      (baz))
+
+    ;; 悪い
+    (defn some-fun
+      []
+      ;; FIXME: This has crashed occasionally since v1.2.3. It may
+      ;; be related to the BarBazUtil upgrade. (xz 13-1-31)
+      (baz))
+    ```
 
 * <a name="sing-and-date-annotations"></a>
   アノテーションには記述者のイニシャルと日付を入れる。そうすればその妥当性を容易に示せる。
