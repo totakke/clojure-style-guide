@@ -546,7 +546,7 @@
     ```
 
 * <a name="when-instead-of-single-branch-if"></a>
-  `(if ... (do ...)`の代わりに`when`を使う。
+  `(if ... (do ...))`の代わりに`when`を使う。
 <sup>[[リンク](#when-instead-of-single-branch-if)]</sup>
 
     ```Clojure
@@ -626,7 +626,7 @@
     ```
 
 * <a name="when-not-instead-of-single-branch-if-not"></a>
-  `(if-not ... (do ...)`の代わりに`when-not`を使う。
+  `(if-not ... (do ...))`の代わりに`when-not`を使う。
 <sup>[[リンク](#when-not-instead-of-single-branch-if-not)]</sup>
 
     ```Clojure
@@ -1577,14 +1577,14 @@
 (defn frobnitz
   "This function does a frobnitz.
   It will do gnorwatz to achieve this, but only under certain
-  cricumstances."
+  circumstances."
   []
   ...)
 
 ;; 悪い
 (defn frobnitz
   "This function does a frobnitz. It will do gnorwatz to
-  achieve this, but only under certain cricumstances."
+  achieve this, but only under certain circumstances."
   []
   ...)
 ```
