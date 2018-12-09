@@ -1471,7 +1471,7 @@
     ```
 
 * <a name="indent-annotations"></a>
-  詳細が複数行に渡る場合、2行目以降は1行目に合わせてインデントするべきだ。
+  詳細が複数行にわたる場合、2行目以降は1行目に合わせてインデントするべきだ。
 <sup>[[リンク](#indent-annotations)]</sup>
 
     ```Clojure
@@ -1646,7 +1646,7 @@
 ```
 
 * <a name="docstring-indentation"></a>
-  複数行に渡るドキュメント文字列は、2つのスペースでインデントする。
+  複数行にわたるドキュメント文字列は、2つのスペースでインデントする。
 <sup>[[リンク](#docstring-indentation)]</sup>
 
 ```clojure
