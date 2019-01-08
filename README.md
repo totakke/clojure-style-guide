@@ -339,7 +339,7 @@
     ```
 
 * <a name="empty-lines-between-top-level-forms"></a>
-  トップレベルのフォームの間には空白行を挟む。
+  トップレベルのフォームの間には1行の空白行を挟む。
 <sup>[[リンク](#empty-lines-between-top-level-forms)]</sup>
 
     ```Clojure
@@ -350,6 +350,12 @@
 
     ;; 悪い
     (def x ...)
+    (defn foo ...)
+
+    ;; 悪い
+    (def x ...)
+
+
     (defn foo ...)
     ```
 
