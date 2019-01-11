@@ -39,6 +39,7 @@
 * [構文](#syntax)
 * [命名規約](#naming)
 * [コレクション](#collections)
+* [タイプとレコード](#types--records)
 * [状態](#mutation)
 * [文字列](#strings)
 * [例外](#exceptions)
@@ -1240,6 +1241,66 @@
 * <a name="avoid-java-arrays"></a>
   Java呼び出しや、プリミティブ型を多用するパフォーマンスクリティカルなコードを除いて、Javaの配列の使用を避ける。
 <sup>[[リンク](#avoid-java-arrays)]</sup>
+
+## <a name="types--records"></a>タイプとレコード
+
+* <a name="record-constructors"></a>
+  タイプやレコードのインスタンスを作るのにJava呼び出しを用いない。`deftype`や`defrecord`が自動的に生成したコンストラクタ関数を使用する。そうすることで、`deftype`や`defrecord`を利用していることが明確になる。詳しくは[この記事](https://stuartsierra.com/2015/05/17/clojure-record-constructors)を参照する。
+  <sup>[[リンク](#record-constructors)</sup>
+
+    ``` Clojure
+    (defrecord Foo [a b])
+    (deftype Bar [a b])
+
+    ;; 良い
+    (->Foo 1 2)
+    (map->Foo {:b 4 :a 3})
+    (->Bar 1 2)
+
+    ;; 悪い
+    (Foo. 1 2)
+    (Bar. 1 2)
+    ```
+
+  `deftype`は`map->Type`というコンストラクタを作らないことに注意する。レコードでのみ使用できる。
+
+* <a name="custom-record-constructors"></a>
+  レコード生成時にプロパティのバリデーションを行うためなど、必要なら独自のタイプ/レコードのコンストラクタを追加する。詳しくは[この記事](https://stuartsierra.com/2015/05/17/clojure-record-constructors)を参照する。
+  <sup>[[リンク](#custom-record-constructors)</sup>
+
+    ``` Clojure
+    (defrecord Customer [id name phone email])
+
+    (defn make-customer
+      "Creates a new customer record."
+      [{:keys [name phone email]}]
+      {:pre [(string? name)
+             (valid-phone? phone)
+             (valid-email? email)]}
+      (->Customer (next-id) name phone email))
+    ```
+
+  このようなカスタムコンストラクタには、好きな命名規則や構造を用いて構わない。
+
+* <a name="custom-record-constructors-naming"></a>
+  自動生成されたタイプ/レコードのコンストラクタ関数を上書きしない。それらのコンストラクタ関数は特定の振る舞いをすると想定されているため、この挙動を変更することは驚き最小の原則に反する。詳しくは[この記事](https://stuartsierra.com/2015/05/17/clojure-record-constructors)を参照する。
+  <sup>[[リンク](#custom-record-constructors-naming)</sup>
+
+    ``` Clojure
+    (defrecord Foo [num])
+
+    ;; 良い
+    (defn make-foo
+      [num]
+      {:pre [(pos? num)]}
+      (->Foo num))
+
+    ;; 悪い
+    (defn ->Foo
+      [num]
+      {:pre [(pos? num)]}
+      (Foo. num))
+    ```
 
 ## <a name="mutation"></a>状態
 
