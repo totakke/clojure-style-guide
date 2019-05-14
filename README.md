@@ -393,6 +393,29 @@
     ```Clojure
     (ns examples.ns
       (:refer-clojure :exclude [next replace remove])
+      (:require [clojure.string :as s :refer [blank?]])
+      (:import java.util.Date))
+    ```
+
+* <a name="line-break-ns-declaration"></a>
+  複数の依存を記述する場合、新しい行から書き始め、1つごとに改行しても良い。そうすることでソートが容易になり、長い行でも読みやすくなる。また、1つの依存の変更によるdiffを減らすことができる。
+<sup>[[リンク](#line-break-ns-declaration)]</sup>
+
+    ```Clojure
+    ;; より良い
+    (ns examples.ns
+      (:require
+       [clojure.string :as s :refer [blank?]]
+       [clojure.set :as set]
+       [clojure.java.shell :as sh])
+      (:import
+       java.util.Date
+       java.text.SimpleDateFormat
+       [java.util.concurrent Executors
+                             LinkedBlockingQueue]))
+
+    ;; 良い
+    (ns examples.ns
       (:require [clojure.string :as s :refer [blank?]]
                 [clojure.set :as set]
                 [clojure.java.shell :as sh])
@@ -400,6 +423,11 @@
                java.text.SimpleDateFormat
                [java.util.concurrent Executors
                                      LinkedBlockingQueue]))
+
+    ;; 悪い
+    (ns examples.ns
+      (:require [clojure.string :as s :refer [blank?]] [clojure.set :as set] [clojure.java.shell :as sh])
+      (:import java.util.Date java.text.SimpleDateFormat [java.util.concurrent Executors LinkedBlockingQueue]))
     ```
 
 * <a name="prefer-require-over-use"></a>
