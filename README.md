@@ -20,7 +20,7 @@
 
 このスタイルガイドはまだ作成途中だ。そのため、いくつかのセクションが欠けていたり、不完全であったり、いくつかの規約には例がなかったり、それが明快でなかったりする。これらの問題が解決されるまで、それを念頭に置いてほしい。
 
-また、Clojure開発コミュニティが[ライブラリのコーディング規約](http://dev.clojure.org/display/community/Library+Coding+Standards)の一覧をまとめていることも覚えておいてほしい。
+また、Clojure開発コミュニティが[ライブラリのコーディング規約](https://clojure.org/community/contrib_howto#_coding_guidelines)の一覧をまとめていることも覚えておいてほしい。
 
 [Pandoc](http://pandoc.org/)を利用することで、このスタイルガイドのPDF版やHTML版を生成することができる。
 
