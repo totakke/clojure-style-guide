@@ -10,7 +10,7 @@ ifndef::backend-pdf[]
 endif::[]
 :source-highlighter: rouge
 
-このスタイルガイドは、 https://twitter.com/bbatsov[Bozhidar Batsov] 氏による https://github.com/bbatsov/clojure-style-guide[bbatsov/clojure-style-guide] の日本語訳フォークです。
+このスタイルガイドは、 https://twitter.com/bbatsov[Bozhidar Batsov] 氏による https://github.com/bbatsov/clojure-style-guide[bbatsov/clojure-style-guide] の日本語翻訳版です。
 
 image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License] 本翻訳版のライセンスは http://creativecommons.org/licenses/by/3.0/deed.ja_JP[クリエイティブ・コモンズ 表示 3.0 非移植 ライセンス] とします。原著作者はBozhidar Batsov氏です。原文のライセンスについてもご注意ください。
 
@@ -25,6 +25,10 @@ ____
 良い手本は大切だ。
 ____
 
+ifdef::env-github[]
+TIP: このスタイルガイドのナビゲーション付きの見やすいバージョンが https://totakke.github.io/clojure-style-guide/ にあります。
+endif::[]
+
 このClojureスタイルガイドは、実際のClojureプログラマーが他のClojureプログラマーに保守してもらえるコードを書くための、ベストプラクティスを勧めるものだ。
 実際の使われ方を反映したスタイルガイドは利用されるが、理想的であっても人々に受け入れられないような規約を持つスタイルガイドは全く利用されない危険がある -- たとえそれがどれほど優れたものであったとしても。
 
@@ -36,7 +40,8 @@ NOTE: このスタイルガイドはまだ作成途中だ。そのため、い�
 
 また、Clojure開発コミュニティが https://clojure.org/community/contrib_howto#_coding_guidelines[ライブラリのコーディング規約] の一覧をまとめていることも覚えておいてほしい。
 
-https://asciidoctor.org/docs/asciidoctor-pdf/[AsciiDoctor PDF] を利用することで、このスタイルガイドのPDF版を生成することができる。また、 https://asciidoctor.org/#installation[AsciiDoctor] を https://asciidoctor.org/docs/convert-documents/#converting-a-document-to-html[使う] ことで、HTML版を生成できる。
+ifdef::env-github[]
+https://asciidoctor.org/docs/asciidoctor-pdf/[AsciiDoctor PDF] を利用することで、このスタイルガイドのPDF版を生成することができます。また、 https://asciidoctor.org/#installation[AsciiDoctor] を https://asciidoctor.org/docs/convert-documents/#converting-a-document-to-html[使う] ことで、HTML版を生成できます。
 
 [source,shell]
 ----
@@ -49,13 +54,14 @@ asciidoctor
 
 [TIP]
 ====
-生成されたドキュメント中でシンタックスハイライトをしたければ、 `rouge` gemをインストールする。
+生成されたドキュメント中でシンタックスハイライトをしたい場合は、 `rouge` gemをインストールしてください。
 
 [source,shell]
 ----
 gem install rouge
 ----
 ====
+endif::[]
 
 このスタイルガイドは以下の言語に翻訳されている：
 
