@@ -866,7 +866,7 @@ varの値を変更するには、 `def` の代わりに `alter-var-root` を使�
 
 === `comp` [[comp]]
 
-コードをシンプルにするために `comp` の使用を考える。
+関数合成するには、無名関数よりも `comp` が好ましい。
 
 [source,clojure]
 ----
@@ -881,7 +881,7 @@ varの値を変更するには、 `def` の代わりに `alter-var-root` を使�
 
 === `partial` [[partial]]
 
-コードをシンプルにするために `partial` の使用を考える。
+カリー化するには、無名関数よりも `partial` が好ましい。
 
 [source,clojure]
 ----
