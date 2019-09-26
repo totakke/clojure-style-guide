@@ -1019,7 +1019,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="one-file-per-namespace"><a class="anchor" href="#one-file-per-namespace"></a><a class="link" href="#one-file-per-namespace">1名前空間に1ファイル</a></h3>
 <div class="paragraph">
-<p>名前空間ごとにファイルを分ける。</p>
+<p>1つの名前空間には1つのファイルを用い、1つのファイルには1つの名前空間を用いる。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="clojure"><span class="c1">;; 良い</span><span class="w">
+</span><span class="p">(</span><span class="nf">ns</span><span class="w"> </span><span class="n">foo.bar</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">;; 悪い</span><span class="w">
+</span><span class="p">(</span><span class="nf">ns</span><span class="w"> </span><span class="n">foo.bar</span><span class="p">)</span><span class="w">
+</span><span class="p">(</span><span class="nf">ns</span><span class="w"> </span><span class="n">baz.qux</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">;; 悪い</span><span class="w">
+</span><span class="p">(</span><span class="nb">in-ns</span><span class="w"> </span><span class="n">quux.quuz</span><span class="p">)</span><span class="w">
+</span><span class="p">(</span><span class="nb">in-ns</span><span class="w"> </span><span class="n">quuz.corge</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">;; 悪い</span><span class="w">
+</span><span class="p">(</span><span class="nf">ns</span><span class="w"> </span><span class="n">foo.bar</span><span class="p">)</span><span class="w"> </span><span class="err">もしくは</span><span class="w"> </span><span class="p">(</span><span class="nb">in-ns</span><span class="w"> </span><span class="n">foo.bar</span><span class="p">)</span><span class="w"> </span><span class="err">を複数のファイル内で用いる</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1654,7 +1671,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="comp"><a class="anchor" href="#comp"></a><a class="link" href="#comp"><code>comp</code></a></h3>
 <div class="paragraph">
-<p>コードをシンプルにするために <code>comp</code> の使用を考える。</p>
+<p>関数合成するには、無名関数よりも <code>comp</code> が好ましい。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1671,7 +1688,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="partial"><a class="anchor" href="#partial"></a><a class="link" href="#partial"><code>partial</code></a></h3>
 <div class="paragraph">
-<p>コードをシンプルにするために <code>partial</code> の使用を考える。</p>
+<p>カリー化するには、無名関数よりも <code>partial</code> が好ましい。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3128,7 +3145,7 @@ it easier for tooling to display it correctly."</span><span class="p">)</span></
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-08-10 06:58:06 UTC
+Last updated 2019-09-26 12:43:57 UTC
 </div>
 </div>
 <style>
