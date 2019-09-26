@@ -315,7 +315,24 @@ ____
 
 === 1名前空間に1ファイル [[one-file-per-namespace]]
 
-名前空間ごとにファイルを分ける。
+1つの名前空間には1つのファイルを用い、1つのファイルには1つの名前空間を用いる。
+
+[source,clojure]
+----
+;; 良い
+(ns foo.bar)
+
+;; 悪い
+(ns foo.bar)
+(ns baz.qux)
+
+;; 悪い
+(in-ns quux.quuz)
+(in-ns quuz.corge)
+
+;; 悪い
+(ns foo.bar) もしくは (in-ns foo.bar) を複数のファイル内で用いる
+----
 
 == 名前空間の定義 [[namespace-declaration]]
 
