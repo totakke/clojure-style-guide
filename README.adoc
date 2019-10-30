@@ -2006,6 +2006,7 @@ it easier for tooling to display it correctly.")
 
 * https://github.com/technomancy/slamhound[Slamhound] は既存のコードから適切な `ns` 定義を自動的に生成してくれる。
 * https://github.com/jonase/kibit[kibit] はClojure向けの静的コード解析ツールだ。より慣用的な関数やマクロの探索には https://github.com/clojure/core.logic[core.logic] を用いている。
+* https://github.com/borkdude/clj-kondo[clj-kondo] は、このスタイルガイドに基づいて、多くの非推奨パターンを発見し、改善案を提案してくれるLintツールだ。
 
 == 貢献 [[contributing]]
 
