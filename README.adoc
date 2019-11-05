@@ -3,7 +3,6 @@
 :idseparator: -
 :sectanchors:
 :sectlinks:
-:toc: preamble
 :toclevels: 1
 ifndef::backend-pdf[]
 :toc-title: pass:[<h2>目次</h2>]
@@ -1831,6 +1830,32 @@ ____
   ...)
 ----
 
+=== ドキュメント文字列でのMarkdownの利用 [[markdown-docstrings]]
+
+https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.adoc#docstrings[cljdoc] などの有用なツールは、ドキュメント文字列内におけるMarkdownをサポートしているため、フォーマットをきれいに整えるのに利用すると良い。
+
+[source,clojure]
+----
+;; 良い
+(defn qzuf-number
+  "Computes the [Qzuf number](https://wikipedia.org/qzuf) of the `coll`.
+  Supported options in `opts`:
+  
+  | key           | description |
+  | --------------|-------------|
+  | `:finite-uni?`| Assume finite universe; default: `false`
+  | `:complex?`   | If OK to return a [complex number](https://en.wikipedia.org/wiki/Complex_number); default: `false`
+  | `:timeout`    | Throw an exception if the computation doesn't finish within `:timeout` milliseconds; default: `nil`
+  
+  Example:
+  ```clojure
+  (when (neg? (qzuf-number [1 2 3] {:finite-uni? true}))
+    (throw (RuntimeException. "Error in the Universe!")))
+  ```"
+  [coll opts]
+  ...)
+----
+
 === 引数のドキュメント化 [[document-pos-arguments]]
 
 全ての引数をドキュメント化し、それらをバッククォート（`）で囲む。そうすることで、エディタやIDEが引数を識別できるようになり、より高度な機能を提供できる可能性がある。
@@ -1854,21 +1879,23 @@ ____
 
 === ドキュメントの参照 [[document-references]]
 
-ドキュメント文字列でのvarの参照を ` で囲み、ツールが識別できるようにする。
+ドキュメント文字列でのvarの参照を ` で囲み、ツールが識別できるようにする。リンクを張りたい場合は `[[..]]` で囲う。
 
 [source,clojure]
 ----
 ;; 良い
 (defn wombat
   "Acts much like `clojure.core/identity` except when it doesn't.
-  Takes `x` as an argument and returns that. If it feels like it."
+  Takes `x` as an argument and returns that. If it feels like it.
+  See also [[kangaroo]]."
   [x]
   ...)
 
 ;; 悪い
 (defn wombat
   "Acts much like clojure.core/identity except when it doesn't.
-  Takes `x` as an argument and returns that. If it feels like it."
+  Takes `x` as an argument and returns that. If it feels like it.
+  See also kangaroo."
   [x]
   ...)
 ----
@@ -2012,7 +2039,7 @@ it easier for tooling to display it correctly.")
 
 このスタイルガイドはまだまだ書き換えることができます。Clojureのコーディングスタイルに関心のある皆さんと一緒に取り組み、最終的にはClojureコミュニティ全体にとって有益な情報源を作り上げたいと思っています。
 
-遠慮なくチケットを作り、改良案をPull Requestで送ってください。どうかよろしくお願いします。
+遠慮なく https://github.com/bbatsov/clojure-style-guide/issues[チケットを作り、改良案をPull Requestで送って] ください。どうかよろしくお願いします。
 
 https://www.patreon.com/bbatsov[Patreon] あるいは https://www.paypal.me/bbatsov[PayPal] を通して、金銭的にこのスタイルガイド（およびCIDER、nREPL、orchardといった私のClojureプロジェクト）を支援することもできます。
 
