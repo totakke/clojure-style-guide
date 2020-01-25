@@ -421,6 +421,31 @@ ____
   (:use clojure.zip))
 ----
 
+=== requireとimportのソート [[sort-requirements-and-imports]]
+
+`ns` フォームではrequireとimportをソートする。特にrequire/importする名前空間が非常に多い場合には、ソートすることで可読性が向上し、重複を避けられるようになる。
+
+[source,clojure]
+----
+;; 良い
+(ns examples.ns
+  (:require
+   [baz.core :as baz]
+   [clojure.java.shell :as sh]
+   [clojure.set :as set]
+   [clojure.string :as s :refer [blank?]]
+   [foo.bar :as foo]))
+
+;; 悪い
+(ns examples.ns
+  (:require
+   [clojure.string :as s :refer [blank?]]
+   [clojure.set :as set]
+   [baz.core :as baz]
+   [foo.bar :as foo]
+   [clojure.java.shell :as sh]))
+----
+
 == 関数 [[functions]]
 
 === 関数名の後に改行しても良い [[optional-new-line-after-fn-name]]
