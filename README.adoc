@@ -162,7 +162,7 @@ ____
 ;; 悪い
 (let [thing1 "some stuff"
   thing2 "other stuff"]
-  (foo thing1 thing2})
+  (foo thing1 thing2))
 ----
 
 === マップのキーの揃え方 [[map-keys-alignment]]
