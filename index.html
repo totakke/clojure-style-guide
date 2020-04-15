@@ -2145,7 +2145,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="underscore-for-unused-bindings"><a class="anchor" href="#underscore-for-unused-bindings"></a><a class="link" href="#underscore-for-unused-bindings">使用しない束縛にはアンダースコア</a></h3>
 <div class="paragraph">
-<p>分配束縛しても直後のコードで使われない変数名には <code>_</code> を使う。</p>
+<p>直後のコードで使用されない分配束縛や引数名には <code>_</code> を使う。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2162,6 +2162,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </span><span class="p">(</span><span class="nb">dotimes</span><span class="w"> </span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w">
   </span><span class="p">(</span><span class="nb">println</span><span class="w"> </span><span class="s">"Hello!"</span><span class="p">))</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>コードの理解を助けるためならば、使用しない引数や分配束縛のマップに明示的に名前を付けても良い。この場合、その変数が実際には使われないことを示すため、先頭にアンダースコアを付加する。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="clojure"><span class="c1">;; 良い</span><span class="w">
+</span><span class="p">(</span><span class="k">defn</span><span class="w"> </span><span class="n">myfun1</span><span class="w"> </span><span class="p">[</span><span class="n">context</span><span class="w"> </span><span class="n">_</span><span class="p">]</span><span class="w">
+  </span><span class="p">(</span><span class="nb">assoc</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="no">:foo</span><span class="w"> </span><span class="s">"bar"</span><span class="p">))</span><span class="w">
+
+</span><span class="p">(</span><span class="k">defn</span><span class="w"> </span><span class="n">myfun2</span><span class="w"> </span><span class="p">[</span><span class="n">context</span><span class="w"> </span><span class="p">{</span><span class="no">:keys</span><span class="w"> </span><span class="p">[</span><span class="n">id</span><span class="p">]}]</span><span class="w">
+  </span><span class="p">(</span><span class="nb">assoc</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="no">:user-id</span><span class="w"> </span><span class="n">id</span><span class="p">))</span><span class="w">
+
+</span><span class="c1">;; より良い</span><span class="w">
+</span><span class="p">(</span><span class="k">defn</span><span class="w"> </span><span class="n">myfun1</span><span class="w"> </span><span class="p">[</span><span class="n">context</span><span class="w"> </span><span class="n">_user</span><span class="p">]</span><span class="w">
+  </span><span class="p">(</span><span class="nb">assoc</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="no">:foo</span><span class="w"> </span><span class="s">"bar"</span><span class="p">))</span><span class="w">
+
+</span><span class="p">(</span><span class="k">defn</span><span class="w"> </span><span class="n">myfun2</span><span class="w"> </span><span class="p">[</span><span class="n">context</span><span class="w"> </span><span class="p">{</span><span class="no">:keys</span><span class="w"> </span><span class="p">[</span><span class="n">id</span><span class="p">]</span><span class="w"> </span><span class="no">:as</span><span class="w"> </span><span class="n">_user</span><span class="p">}]</span><span class="w">
+  </span><span class="p">(</span><span class="nb">assoc</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="no">:user-id</span><span class="w"> </span><span class="n">id</span><span class="p">))</span></code></pre>
 </div>
 </div>
 </div>
@@ -3207,7 +3227,7 @@ it easier for tooling to display it correctly."</span><span class="p">)</span></
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-02-24 10:49:33 UTC
+Last updated 2020-04-15 12:41:30 UTC
 </div>
 </div>
 <style>
