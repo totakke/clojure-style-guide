@@ -1287,7 +1287,7 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 
 === 使用しない束縛にはアンダースコア [[underscore-for-unused-bindings]]
 
-分配束縛しても直後のコードで使われない変数名には `+_+` を使う。
+直後のコードで使用されない分配束縛や引数名には `+_+` を使う。
 
 [source,clojure]
 ----
@@ -1304,6 +1304,25 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 
 (dotimes [i 3]
   (println "Hello!"))
+----
+
+コードの理解を助けるためならば、使用しない引数や分配束縛のマップに明示的に名前を付けても良い。この場合、その変数が実際には使われないことを示すため、先頭にアンダースコアを付加する。
+
+[source,clojure]
+----
+;; 良い
+(defn myfun1 [context _]
+  (assoc context :foo "bar"))
+
+(defn myfun2 [context {:keys [id]}]
+  (assoc context :user-id id))
+
+;; より良い
+(defn myfun1 [context _user]
+  (assoc context :foo "bar"))
+
+(defn myfun2 [context {:keys [id] :as _user}]
+  (assoc context :user-id id))
 ----
 
 === 慣用名
