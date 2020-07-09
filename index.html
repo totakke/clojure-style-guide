@@ -636,7 +636,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#library-organization">ライブラリの構成</a>
 <ul class="sectlevel2">
-<li><a href="#lib-coordinates">コーディネート</a></li>
+<li><a href="#lib-coordinates">ライブラリの識別子</a></li>
 <li><a href="#lib-min-dependencies">依存の最小化</a></li>
 <li><a href="#lib-core-separate-from-tools">ツールの分離</a></li>
 </ul>
@@ -3156,9 +3156,31 @@ it easier for tooling to display it correctly."</span><span class="p">)</span></
 <h2 id="library-organization"><a class="anchor" href="#library-organization"></a><a class="link" href="#library-organization">ライブラリの構成</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="lib-coordinates"><a class="anchor" href="#lib-coordinates"></a><a class="link" href="#lib-coordinates">コーディネート</a></h3>
+<h3 id="lib-coordinates"><a class="anchor" href="#lib-coordinates"></a><a class="link" href="#lib-coordinates">ライブラリの識別子</a></h3>
 <div class="paragraph">
-<p>他の人が使えるようにライブラリを公開する場合、 <a href="http://central.sonatype.org/pages/choosing-your-coordinates.html">Central Repositoryのガイドライン</a> にしたがって <code>groupId</code> と <code>artifactId</code> を選ぶ。これにより名前の衝突が避けられ、幅広い利用が促進される。良い例として <a href="https://github.com/stuartsierra/component">Component</a> があげられる。</p>
+<p>他の人が使えるようにライブラリを公開する場合、 <a href="http://central.sonatype.org/pages/choosing-your-coordinates.html">Central Repositoryのガイドライン</a> にしたがって <code>groupId</code> と <code>artifactId</code> を選ぶ。これにより名前の衝突が避けられ、幅広い利用が促進される。 <a href="https://github.com/stuartsierra/component">Component</a> が良い例で、識別子は <code>com.stuartsierra/component</code> だ。</p>
+</div>
+<div class="paragraph">
+<p>異なるアプローチとして、<code>groupId</code> にドメインではなくプロジェクト名（あるいは組織名）がよく用いられる。</p>
+</div>
+<div class="paragraph">
+<p>例:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cider/cider-nrepl</code></p>
+</li>
+<li>
+<p><code>nrepl/nrepl</code></p>
+</li>
+<li>
+<p><code>nrepl/drawbridge</code></p>
+</li>
+<li>
+<p><code>clj-commons/fs</code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -3227,7 +3249,7 @@ it easier for tooling to display it correctly."</span><span class="p">)</span></
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-04-15 12:41:30 UTC
+Last updated 2020-07-09 11:50:23 UTC
 </div>
 </div>
 <style>
