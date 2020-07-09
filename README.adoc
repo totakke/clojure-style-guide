@@ -1884,13 +1884,13 @@ https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.a
 (defn qzuf-number
   "Computes the [Qzuf number](https://wikipedia.org/qzuf) of the `coll`.
   Supported options in `opts`:
-  
+
   | key           | description |
   | --------------|-------------|
   | `:finite-uni?`| Assume finite universe; default: `false`
   | `:complex?`   | If OK to return a [complex number](https://en.wikipedia.org/wiki/Complex_number); default: `false`
   | `:timeout`    | Throw an exception if the computation doesn't finish within `:timeout` milliseconds; default: `nil`
-  
+
   Example:
   ```clojure
   (when (neg? (qzuf-number [1 2 3] {:finite-uni? true}))
@@ -2059,9 +2059,18 @@ it easier for tooling to display it correctly.")
 
 == ライブラリの構成 [[library-organization]]
 
-=== コーディネート [[lib-coordinates]]
+=== ライブラリの識別子 [[lib-coordinates]]
 
-他の人が使えるようにライブラリを公開する場合、 http://central.sonatype.org/pages/choosing-your-coordinates.html[Central Repositoryのガイドライン] にしたがって `groupId` と `artifactId` を選ぶ。これにより名前の衝突が避けられ、幅広い利用が促進される。良い例として https://github.com/stuartsierra/component[Component] があげられる。
+他の人が使えるようにライブラリを公開する場合、 http://central.sonatype.org/pages/choosing-your-coordinates.html[Central Repositoryのガイドライン] にしたがって `groupId` と `artifactId` を選ぶ。これにより名前の衝突が避けられ、幅広い利用が促進される。 https://github.com/stuartsierra/component[Component] が良い例で、識別子は `com.stuartsierra/component` だ。
+
+異なるアプローチとして、`groupId` にドメインではなくプロジェクト名（あるいは組織名）がよく用いられる。
+
+例:
+
+* `cider/cider-nrepl`
+* `nrepl/nrepl`
+* `nrepl/drawbridge`
+* `clj-commons/fs`
 
 === 依存の最小化 [[lib-min-dependencies]]
 
