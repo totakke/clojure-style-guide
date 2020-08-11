@@ -445,6 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#introduction">はじめに</a></li>
 <li><a href="#source-code-layout-organization">ソースコードのレイアウトと構造</a>
 <ul class="sectlevel2">
+<li><a href="#80-character-limits">1行の最大長 </a></li>
 <li><a href="#spaces">タブ vs スペース</a></li>
 <li><a href="#body-indentation">ボディのインデント</a></li>
 <li><a href="#vertically-align-fn-args">関数の引数の揃え方</a></li>
@@ -458,7 +459,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#gather-trailing-parens">後方の括弧の集約</a></li>
 <li><a href="#empty-lines-between-top-level-forms">トップレベルのフォーム間の空白行</a></li>
 <li><a href="#no-blank-lines-within-def-forms">定義フォーム内に空白行を入れない</a></li>
-<li><a href="#80-character-limits">1行の最大長 </a></li>
 <li><a href="#no-trailing-whitespace">行末の空白を避ける</a></li>
 <li><a href="#one-file-per-namespace">1名前空間に1ファイル</a></li>
 </ul>
@@ -741,6 +741,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
+<h3 id="80-character-limits"><a class="anchor" href="#80-character-limits"></a><a class="link" href="#80-character-limits">1行の最大長 <a id="line-length"></a></a></h3>
+<div class="paragraph">
+<p>可能なら、1行が80文字を超えないようにする。</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">なぜ現代のワイドスクリーンディスプレイで80文字なのか？</div>
+<div class="paragraph">
+<p>多くの人が、1行につき最大80文字なのは単に古い時代の名残であり、現代ではほとんど意味がないと感じている。実際、現代のディスプレイならば1行に容易に200文字以上を表示できる。しかし依然として、コードの行を短く保つことにはいくつかの利点が存在する。</p>
+</div>
+<div class="paragraph">
+<p>何よりもまず、数多くの研究から、人間は垂直方向により早く読み進めることができ、長い行は文章を読みにくくするということがわかっている。すでに述べたように、このスタイルガイドの方針の1つは、人間が読むことを前提としたコードの最適化だ。</p>
+</div>
+<div class="paragraph">
+<p>さらに、エディタのウィンドウ幅が制限されることで複数のファイルを横並びに開いておくことができ、2つのバージョンを隣に表示するコードレビューツールを使う際に便利だ。</p>
+</div>
+<div class="paragraph">
+<p>多くのツールのデフォルトの折返し機能は、コードの視覚的な構造を壊してしまうため、理解することがより難しくなる。たとえツールが行の最後に折り返しのマーカーを付けてくれるのだとしても、ウィンドウ幅80文字のエディタで折り返しを避けるために文字数制限が選択される。いくつかのWebベースのツールでは、動的な折返し機能を提供していないものもある。</p>
+</div>
+<div class="paragraph">
+<p>長い行を強く好むチームもいる。1つのチームが主にメンテナンスするコードであれば、制限を100文字以内や120文字以内に増やしても良い。それでも、120文字を超える長さにすることは止めてほしい。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="spaces"><a class="anchor" href="#spaces"></a><a class="link" href="#spaces">タブ vs スペース</a></h3>
 <div class="paragraph">
 <p>インデントには <strong>スペース</strong> を使う。タブは使わない。</p>
@@ -1004,12 +1030,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h3 id="no-blank-lines-within-def-forms"><a class="anchor" href="#no-blank-lines-within-def-forms"></a><a class="link" href="#no-blank-lines-within-def-forms">定義フォーム内に空白行を入れない</a></h3>
 <div class="paragraph">
 <p>関数やマクロ定義の中には空白行を入れない。ただし、 <code>let</code> や <code>cond</code> 等において、ペアをグループ分けするために入れるのは良い。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="80-character-limits"><a class="anchor" href="#80-character-limits"></a><a class="link" href="#80-character-limits">1行の最大長 <a id="line-length"></a></a></h3>
-<div class="paragraph">
-<p>可能なら、1行が80文字を超えないようにする。</p>
 </div>
 </div>
 <div class="sect2">
@@ -3249,7 +3269,7 @@ it easier for tooling to display it correctly."</span><span class="p">)</span></
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-09 11:50:23 UTC
+Last updated 2020-08-11 09:33:51 UTC
 </div>
 </div>
 <style>
