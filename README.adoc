@@ -2128,7 +2128,7 @@ it easier for tooling to display it correctly.")
 
 このスタイルガイドはまだまだ書き換えることができます。Clojureのコーディングスタイルに関心のある皆さんと一緒に取り組み、最終的にはClojureコミュニティ全体にとって有益な情報源を作り上げたいと思っています。
 
-遠慮なく https://github.com/bbatsov/clojure-style-guide/issues[チケットを作り、改良案をPull Requestで送って] ください。どうかよろしくお願いします。
+遠慮なく改良案の https://github.com/bbatsov/clojure-style-guide/issues[Pull Requestを作って] ください。どうかよろしくお願いします。
 
 https://www.patreon.com/bbatsov[Patreon] あるいは https://www.paypal.me/bbatsov[PayPal] を通して、金銭的にこのスタイルガイド（およびCIDER、nREPL、orchardといった私のClojureプロジェクト）を支援することもできます。
 
