@@ -941,7 +941,7 @@ varの値を変更するには、 `def` の代わりに `alter-var-root` を使�
 
 === `partial` [[partial]]
 
-カリー化するには、無名関数よりも `partial` が好ましい。
+無名関数よりも `partial` が好ましい。
 
 [source,clojure]
 ----
